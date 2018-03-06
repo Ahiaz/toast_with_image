@@ -256,7 +256,7 @@ public class Toast extends CordovaPlugin {
             callbackContext.error("Empty message!");
         } else {
 
-            Context contextToast = IS_AT_LEAST_LOLLIPOP ? cordova.getActivity().getWindow().getContext() : cordova.getActivity().getApplicationContext()
+            Context contextToast = IS_AT_LEAST_LOLLIPOP ? cordova.getActivity().getWindow().getContext() : cordova.getActivity().getApplicationContext();
 
             // Retrieve the resource
             int custom_layout = cordova.getActivity().getResources().getIdentifier("toast", "layout", cordova.getActivity().getPackageName());
