@@ -276,7 +276,6 @@ public class Toast extends CordovaPlugin {
 //    imageView.setBackgroundDrawable(bitmapDrawable);
 
                 TextView textView = (TextView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("text", "id", cordova.getActivity().getPackageName()));
-);
 
                 textView.setText(message);
 
