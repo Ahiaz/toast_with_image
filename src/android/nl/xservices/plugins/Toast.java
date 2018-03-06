@@ -26,6 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.content.Context;
 
 
 public class Toast extends CordovaPlugin {
@@ -252,19 +253,22 @@ public class Toast extends CordovaPlugin {
             callbackContext.error("Empty message!");
         } else {
 
+
+              Context context = cordova.getActivity().getApplicationContext();
+
+
             // Retrieve the resource
             int custom_layout = cordova.getActivity().getResources().getIdentifier("toast", "layout", cordova.getActivity().getPackageName());
 
 
              LayoutInflater inflater =  cordova.getActivity().getLayoutInflater();
 
-             //ViewGroup mylayout = (ViewGroup) findViewById(android.R.id.toastLayout);
-
-              ViewGroup mylayout = (ViewGroup) ((ViewGroup) cordova.getActivity().findViewById(android.R.id.toastLayout));
+             ViewGroup mylayout = (ViewGroup) findViewById(cordova.getActivity().getResources().getIdentifier("toastLayout", "id", cordova.getActivity().getPackageName()));
 
             View toastView = inflater.inflate(custom_layout, mylayout);
 
-                ImageView imageView = (ImageView)toastView.findViewById(android.R.id.image);
+                ImageView imageView = (ImageView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("image", "id", cordova.getActivity().getPackageName()));
+);
 
                   Bitmap bitmap = BitmapFactory.decodeStream((InputStream)new URL(url).getContent());
 
@@ -272,7 +276,8 @@ public class Toast extends CordovaPlugin {
                 imageView.setImageBitmap(bitmap);
 //    imageView.setBackgroundDrawable(bitmapDrawable);
 
-                TextView textView = (TextView)toastView.findViewById(android.R.id.text);
+                TextView textView = (TextView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("text", "id", cordova.getActivity().getPackageName()));
+);
 
                 textView.setText(message);
 
