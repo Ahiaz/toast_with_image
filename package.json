@@ -34,7 +34,7 @@
       "version": ">=3.0.0"
     }
   ],
-  "author": "Eddy Verbruggen <eddyverbruggen@gmail.com> (https://github.com/EddyVerbruggen) modify by Ahiaz",
+  "author": "Eddy Verbruggen <eddyverbruggen@gmail.com> (https://github.com/EddyVerbruggen)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin/issues"
