@@ -1,5 +1,7 @@
 package nl.xservices.plugins;
 
+
+import android.R;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
@@ -246,7 +248,7 @@ public class Toast extends CordovaPlugin {
 
     private void showWithImage(String message, String url,CallbackContext callbackContext) {
 
-        if (message == null || msg.length() == 0) {
+        if (message == null || message.length() == 0) {
             callbackContext.error("Empty message!");
         } else {
 
