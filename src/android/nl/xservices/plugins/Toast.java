@@ -26,6 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory
 import android.content.Context;
 
 
@@ -255,33 +256,35 @@ public class Toast extends CordovaPlugin {
 
 
               Context context = cordova.getActivity().getApplicationContext();
+              Resources resources = context.getResources();                       
+              String packageName = context.getPackageName();
 
 
             // Retrieve the resource
-            int custom_layout = cordova.getActivity().getResources().getIdentifier("toast", "layout", cordova.getActivity().getPackageName());
+            int custom_layout = resources.getIdentifier("toast", "layout", packageName);
 
 
-             LayoutInflater inflater =  cordova.getActivity().getLayoutInflater();
+             LayoutInflater inflater =  context.getLayoutInflater();
 
-             ViewGroup mylayout = (ViewGroup) cordova.getActivity().findViewById(cordova.getActivity().getResources().getIdentifier("toastLayout", "id", cordova.getActivity().getPackageName()));
+             ViewGroup mylayout = (ViewGroup) context.findViewById(resources.getIdentifier("toastLayout", "id", packageName));
 
             View toastView = inflater.inflate(custom_layout, mylayout);
 
-                ImageView imageView = (ImageView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("image", "id", cordova.getActivity().getPackageName()));
+                ImageView imageView = (ImageView)toastView.findViewById(resources.getIdentifier("image", "id", packageName;
 
-                  Bitmap bitmap = BitmapFactory.decodeStream((InputStream)new URL(url).getContent());
+                  Bitmap bitmap = BitmapFactory.decodeStream(url.openStream());
 
 
                 imageView.setImageBitmap(bitmap);
 //    imageView.setBackgroundDrawable(bitmapDrawable);
 
-                TextView textView = (TextView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("text", "id", cordova.getActivity().getPackageName()));
+                TextView textView = (TextView)toastView.findViewById(resources.getIdentifier("text", "id", packageName);
 
                 textView.setText(message);
 
 
 
-                Toast toast = new Toast(cordova.getActivity().getApplicationContext());
+                Toast toast = new Toast(context);
 
                 toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                 toast.setDuration(Toast.LENGTH_LONG);
