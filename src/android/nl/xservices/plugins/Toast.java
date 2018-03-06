@@ -26,7 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory
+import android.graphics.BitmapFactory;
 import android.content.Context;
 
 
