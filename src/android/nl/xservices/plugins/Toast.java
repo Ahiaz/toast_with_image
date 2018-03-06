@@ -257,9 +257,9 @@ public class Toast extends CordovaPlugin {
 
 
             View toastView = cordova.getActivity().getLayoutInflater().inflate(custom_layout,
-            (ViewGroup)getView().findViewById(android.R.id.toastLayout));
+            (ViewGroup)cordova.getActivity().findViewById(android.R.id.toastLayout));
 
-                ImageView imageView = (ImageView)toastView.getView().findViewById(android.R.id.image);
+                ImageView imageView = (ImageView)toastView.findViewById(android.R.id.image);
 
                   Bitmap bitmap = BitmapFactory.decodeStream((InputStream)new URL(url).getContent());
 
@@ -267,7 +267,7 @@ public class Toast extends CordovaPlugin {
                 imageView.setImageBitmap(bitmap);
 //    imageView.setBackgroundDrawable(bitmapDrawable);
 
-                TextView textView = (TextView)toastView.getView().findViewById(android.R.id.text);
+                TextView textView = (TextView)toastView.findViewById(android.R.id.text);
 
                 textView.setText(message);
 
