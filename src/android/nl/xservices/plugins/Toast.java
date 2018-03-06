@@ -255,22 +255,18 @@ public class Toast extends CordovaPlugin {
         } else {
 
 
-              Context context = cordova.getActivity().getApplicationContext();
-              Resources resources = context.getResources();                       
-              String packageName = context.getPackageName();
-
 
             // Retrieve the resource
-            int custom_layout = resources.getIdentifier("toast", "layout", packageName);
+            int custom_layout = cordova.getActivity().getResources().getIdentifier("toast", "layout", cordova.getActivity().getPackageName());
 
 
-             LayoutInflater inflater =  context.getLayoutInflater();
+             LayoutInflater inflater =  cordova.getActivity().getLayoutInflater();
 
-             ViewGroup mylayout = (ViewGroup) context.findViewById(resources.getIdentifier("toastLayout", "id", packageName));
+             ViewGroup mylayout = (ViewGroup) cordova.getActivity().findViewById(cordova.getActivity().getResources().getIdentifier("toastLayout", "id", cordova.getActivity().getPackageName()));
 
             View toastView = inflater.inflate(custom_layout, mylayout);
 
-                ImageView imageView = (ImageView)toastView.findViewById(resources.getIdentifier("image", "id", packageName));
+                ImageView imageView = (ImageView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("image", "id", cordova.getActivity().getPackageName()));
 
                   Bitmap bitmap = BitmapFactory.decodeStream(url.openStream());
 
@@ -278,13 +274,13 @@ public class Toast extends CordovaPlugin {
                 imageView.setImageBitmap(bitmap);
 //    imageView.setBackgroundDrawable(bitmapDrawable);
 
-                TextView textView = (TextView)toastView.findViewById(resources.getIdentifier("text", "id", packageName));
+                TextView textView = (TextView)toastView.findViewById(resources.getIdentifier("text", "id", cordova.getActivity().getPackageName()));
 
                 textView.setText(message);
 
 
 
-                Toast toast = new Toast(context);
+                Toast toast = new Toast();
 
                 toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                 toast.setDuration(Toast.LENGTH_LONG);
