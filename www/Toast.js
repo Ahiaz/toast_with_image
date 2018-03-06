@@ -87,6 +87,10 @@ Toast.prototype.hide = function (successCallback, errorCallback) {
   cordova.exec(successCallback, errorCallback, "Toast", "hide", []);
 };
 
+Toast.prototype.showWithImage = function (message, url, successCallback, errorCallback) {
+  cordova.exec(successCallback, errorCallback, "Toast", "showWithImage", [message,url]); //options: url, message 
+};
+
 Toast.install = function () {
   if (!window.plugins) {
     window.plugins = {};

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        id="cordova-plugin-x-toast"
+        id="cordova-plugin-x-toast-image"
         version="2.6.0">
 
   <name>Toast</name>
@@ -9,6 +9,7 @@
   <description>
     This plugin allows you to show a Toast.
     A Toast is a little non intrusive buttonless popup which automatically disappears.
+    Added option to load image in toast by Ahiaz (jahiaz@gmail.com)
   </description>
 
   <author>Eddy Verbruggen</author>
@@ -59,6 +60,8 @@
     </config-file>
 
     <source-file src="src/android/nl/xservices/plugins/Toast.java" target-dir="src/nl/xservices/plugins"/>
+    <resource-file src="src/android/nl/xservices/plugins/res/layout/toast.xml" target="res/layout/toast.xml" />
+    <resource-file src="src/android/nl/xservices/plugins/res/layout/roundborder.xml" target="res/layout/roundborder.xml" />
   </platform>
 
   <!-- wp8 -->

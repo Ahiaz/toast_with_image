@@ -25,6 +25,8 @@ public class Toast extends CordovaPlugin {
 
   private static final String ACTION_SHOW_EVENT = "show";
   private static final String ACTION_HIDE_EVENT = "hide";
+  private static final String ACTION_SHOW_IMAGE_EVENT = "showWithImage";
+
 
   private static final int GRAVITY_TOP = Gravity.TOP|Gravity.CENTER_HORIZONTAL;
   private static final int GRAVITY_CENTER = Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL;
@@ -46,6 +48,15 @@ public class Toast extends CordovaPlugin {
 
   @Override
   public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
+
+
+    if (ACTION_SHOW_IMAGE_EVENT.equals(action)) { //Image option
+      showWithImage(args.getString(0), args.getString(1), callbackContext); // first parameter (message) and callback or value
+      return true;
+
+    }
+
+
     if (ACTION_HIDE_EVENT.equals(action)) {
       returnTapEvent("hide", currentMessage, currentData, callbackContext);
       hide();
@@ -224,6 +235,50 @@ public class Toast extends CordovaPlugin {
     if (_timer != null) {
       _timer.cancel();
     }
+  }
+
+  //SHOW WITH IMAGE
+
+    private void showWithImage(String message, String url,CallbackContext callbackContext) {
+
+        if (message == null || msg.length() == 0) {
+            callbackContext.error("Empty message!");
+        } else {
+
+            // Retrieve the resource
+            int custom_layout = cordova.getActivity().getResources().getIdentifier("toast", "layout", cordova.getActivity().getPackageName());
+
+
+            View toastView = getLayoutInflater().inflate(custom_layout,
+            (ViewGroup)findViewById(R.id.toastLayout)));
+
+            
+                ImageView imageView = (ImageView)toastView.findViewById(R.id.image);
+
+                  Bitmap bitmap = BitmapFactory.decodeStream((InputStream)new URL(url).getContent());
+
+
+                imageView.setImageBitmap(bitmap);
+//    imageView.setBackgroundDrawable(bitmapDrawable);
+
+                TextView textView = (TextView)toastView.findViewById(R.id.text);
+
+                textView.setText(message);
+
+                Toast toast = new Toast(IS_AT_LEAST_LOLLIPOP ? cordova.getActivity().getWindow().getContext() : cordova.getActivity().getApplicationContext());
+
+                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                toast.setDuration(Toast.LENGTH_LONG);
+                toast.setView(toastView);
+                toast.show();
+
+               
+                callbackContext.success(message);
+
+
+
+        }
+
   }
 
   private boolean returnTapEvent(String eventName, String message, JSONObject data, CallbackContext callbackContext) {
