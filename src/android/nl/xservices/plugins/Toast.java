@@ -1,7 +1,6 @@
 package nl.xservices.plugins;
 
 
-import android.R;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
@@ -261,8 +260,9 @@ public class Toast extends CordovaPlugin {
 
              //ViewGroup mylayout = (ViewGroup) findViewById(android.R.id.toastLayout);
 
+              ViewGroup mylayout = (ViewGroup) ((ViewGroup) cordova.getActivity().findViewById(android.R.id.toastLayout))
 
-            View toastView = inflater.inflate(custom_layout, null);
+            View toastView = inflater.inflate(custom_layout, mylayout);
 
                 ImageView imageView = (ImageView)toastView.findViewById(android.R.id.image);
 
