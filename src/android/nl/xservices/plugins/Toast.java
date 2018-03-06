@@ -268,7 +268,6 @@ public class Toast extends CordovaPlugin {
             View toastView = inflater.inflate(custom_layout, mylayout);
 
                 ImageView imageView = (ImageView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("image", "id", cordova.getActivity().getPackageName()));
-);
 
                   Bitmap bitmap = BitmapFactory.decodeStream((InputStream)new URL(url).getContent());
 
