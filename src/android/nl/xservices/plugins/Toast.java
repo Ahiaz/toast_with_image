@@ -28,6 +28,8 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.content.Context;
+import android.widget.Toast;
+
 
 
 public class Toast extends CordovaPlugin {
@@ -254,7 +256,7 @@ public class Toast extends CordovaPlugin {
             callbackContext.error("Empty message!");
         } else {
 
-
+            Context contextToast = IS_AT_LEAST_LOLLIPOP ? cordova.getActivity().getWindow().getContext() : cordova.getActivity().getApplicationContext()
 
             // Retrieve the resource
             int custom_layout = cordova.getActivity().getResources().getIdentifier("toast", "layout", cordova.getActivity().getPackageName());
@@ -274,13 +276,13 @@ public class Toast extends CordovaPlugin {
                 imageView.setImageBitmap(bitmap);
 //    imageView.setBackgroundDrawable(bitmapDrawable);
 
-                TextView textView = (TextView)toastView.findViewById(resources.getIdentifier("text", "id", cordova.getActivity().getPackageName()));
+                TextView textView = (TextView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("text", "id", cordova.getActivity().getPackageName()));
 
                 textView.setText(message);
 
 
 
-                Toast toast = new Toast();
+                Toast toast = new Toast(contextToast);
 
                 toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                 toast.setDuration(Toast.LENGTH_LONG);
