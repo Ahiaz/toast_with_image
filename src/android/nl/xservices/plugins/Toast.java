@@ -256,8 +256,8 @@ public class Toast extends CordovaPlugin {
             int custom_layout = cordova.getActivity().getResources().getIdentifier("toast", "layout", cordova.getActivity().getPackageName());
 
 
-            View toastView = getLayoutInflater().inflate(custom_layout,
-            (ViewGroup)getView().findViewById(android.R.id.toastLayout));
+            View toastView = cordova.getActivity().getLayoutInflater().inflate(custom_layout,
+            (ViewGroup).findViewById(android.R.id.toastLayout));
 
                 ImageView imageView = (ImageView)toastView.getView().findViewById(android.R.id.image);
 
