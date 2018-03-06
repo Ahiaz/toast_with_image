@@ -263,7 +263,7 @@ public class Toast extends CordovaPlugin {
 
              LayoutInflater inflater =  cordova.getActivity().getLayoutInflater();
 
-             ViewGroup mylayout = (ViewGroup) findViewById(cordova.getActivity().getResources().getIdentifier("toastLayout", "id", cordova.getActivity().getPackageName()));
+             ViewGroup mylayout = (ViewGroup) cordova.getActivity().findViewById(cordova.getActivity().getResources().getIdentifier("toastLayout", "id", cordova.getActivity().getPackageName()));
 
             View toastView = inflater.inflate(custom_layout, mylayout);
 
@@ -279,7 +279,9 @@ public class Toast extends CordovaPlugin {
 
                 textView.setText(message);
 
-                Toast toast = new Toast(IS_AT_LEAST_LOLLIPOP ? cordova.getActivity().getWindow().getContext() : cordova.getActivity().getApplicationContext());
+
+
+                Toast toast = new Toast(cordova.getActivity().getApplicationContext());
 
                 toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                 toast.setDuration(Toast.LENGTH_LONG);
