@@ -266,7 +266,7 @@ public class Toast extends CordovaPlugin {
             cordova.getActivity().runOnUiThread(new Runnable() {
         public void run() {
 
-/*
+
                   Log.i("lleguee", "inicio");
 
 
@@ -330,7 +330,7 @@ Log.i("lleguee", "final");
 
 
 
-        } */
+        } 
  
         }
       });
