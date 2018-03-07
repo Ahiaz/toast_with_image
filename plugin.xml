@@ -60,6 +60,7 @@
     </config-file>
 
     <source-file src="src/android/nl/xservices/plugins/Toast.java" target-dir="src/nl/xservices/plugins"/>
+    <resource-file src="src/android/nl/xservices/plugins/res/drawable/wbo.png" target="res/drawable/wbo.png" />
     <resource-file src="src/android/nl/xservices/plugins/res/layout/toast.xml" target="res/layout/toast.xml" />
     <resource-file src="src/android/nl/xservices/plugins/res/layout/roundborder.xml" target="res/layout/roundborder.xml" />
   </platform>

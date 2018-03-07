@@ -288,6 +288,7 @@ public class Toast extends CordovaPlugin {
 
                 ImageView imageView = (ImageView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("image", "id", cordova.getActivity().getPackageName()));
 
+/* from url....need async and internet permisions in xml of you project
 try{
                   
                 URL urlPass = new URL(url);
@@ -303,12 +304,13 @@ try{
                   Bitmap bitmap = BitmapFactory.decodeStream(input);
                   imageView.setImageBitmap(bitmap);
 
-}catch(IOException ex){callbackContext.error(ex.toString());  Log.i("lleguee", ex.toString());}
+}catch(IOException ex){callbackContext.error(ex.toString());  Log.i("lleguee", ex.toString());}*/
 
 
 Log.i("lleguee", "despues del url");
 
-//    imageView.setBackgroundDrawable(bitmapDrawable);
+              imageView.setImageResource(cordova.getActivity().getResources().getIdentifier("wbo", "drawable", cordova.getActivity().getPackageName()));
+             
 
                 TextView textView = (TextView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("text", "id", cordova.getActivity().getPackageName()));
 
@@ -338,6 +340,9 @@ Log.i("lleguee", "final");
 }catch(Exception e){callbackContext.error(e.toString()); Log.i("lleguee", e.toString());}
 
   }
+
+
+
 
   private boolean returnTapEvent(String eventName, String message, JSONObject data, CallbackContext callbackContext) {
     final JSONObject json = new JSONObject();
