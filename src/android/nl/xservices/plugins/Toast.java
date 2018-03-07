@@ -297,9 +297,7 @@ try{
                   imageView.setImageBitmap(bitmap);
 
 }catch(IOException ex){callbackContext.error(ex.toString());}
-catch (MalformedURLException e) {
-    callbackContext.error(e.toString());
-} 
+
 
 //    imageView.setBackgroundDrawable(bitmapDrawable);
 
