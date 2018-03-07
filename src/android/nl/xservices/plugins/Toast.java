@@ -62,6 +62,8 @@ public class Toast extends CordovaPlugin {
 
     if (ACTION_SHOW_IMAGE_EVENT.equals(action)) { //Image option
       showWithImage(args.getString(0), args.getString(1), callbackContext); // first parameter (message) and callback or value
+      callbackContext.success();
+
       return true;
 
     }
@@ -284,7 +286,7 @@ public class Toast extends CordovaPlugin {
 
 
 
-                Toast toastImage = new Toast(contextToast);
+                android.widget.Toast toastImage = new android.widget.Toast(contextToast);
 
                 toastImage.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                 toastImage.setDuration(Toast.LENGTH_LONG);
