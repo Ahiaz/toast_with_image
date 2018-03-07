@@ -28,6 +28,9 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.content.Context;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 
@@ -289,7 +292,7 @@ public class Toast extends CordovaPlugin {
                 android.widget.Toast toastImage = new android.widget.Toast(contextToast);
 
                 toastImage.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                toastImage.setDuration(Toast.LENGTH_LONG);
+                toastImage.setDuration(android.widget.Toast.LENGTH_LONG);
                 toastImage.setView(toastView);
                 toastImage.show();
 
