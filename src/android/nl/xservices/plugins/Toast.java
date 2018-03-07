@@ -30,6 +30,7 @@ import android.graphics.BitmapFactory;
 import android.content.Context;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.IOException;
 import java.net.URL;
 import java.io.InputStream;
 
@@ -280,6 +281,7 @@ public class Toast extends CordovaPlugin {
 
                 ImageView imageView = (ImageView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("image", "id", cordova.getActivity().getPackageName()));
 
+try{
                   
                 URL urlPass = new URL(url);
 
@@ -292,9 +294,13 @@ public class Toast extends CordovaPlugin {
 
 
                   Bitmap bitmap = BitmapFactory.decodeStream(input);
+                  imageView.setImageBitmap(bitmap);
 
+}catch(IOException ex){callbackContext.error(ex.toString());}
+catch (MalformedURLException e) {
+    callbackContext.error(e.toString());
+} 
 
-                imageView.setImageBitmap(bitmap);
 //    imageView.setBackgroundDrawable(bitmapDrawable);
 
                 TextView textView = (TextView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("text", "id", cordova.getActivity().getPackageName()));
