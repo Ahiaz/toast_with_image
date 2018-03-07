@@ -266,7 +266,7 @@ public class Toast extends CordovaPlugin {
             cordova.getActivity().runOnUiThread(new Runnable() {
         public void run() {
 
-                  Log.i("entre a run", "siiiii");
+                  Log.i("lleguee", "inicio");
 
 
                   if (message == null || message.length() == 0) {
@@ -302,10 +302,10 @@ try{
                   Bitmap bitmap = BitmapFactory.decodeStream(input);
                   imageView.setImageBitmap(bitmap);
 
-}catch(IOException ex){callbackContext.error(ex.toString());  Log.i("entre a url", ex.toString());}
+}catch(IOException ex){callbackContext.error(ex.toString());  Log.i("lleguee", ex.toString());}
 
 
-Log.i("despues de url", "siiii");
+Log.i("lleguee", "despues del url");
 
 //    imageView.setBackgroundDrawable(bitmapDrawable);
 
@@ -322,7 +322,7 @@ Log.i("despues de url", "siiii");
                 toastImage.setView(toastView);
                 toastImage.show();
 
-Log.i("lleguee");
+Log.i("lleguee", "final");
 
                
                 callbackContext.success(message);
