@@ -281,7 +281,7 @@ public class Toast extends CordovaPlugin {
 
 
 
-                Toast toastImage = new Toast(contextToast);
+                Toast toastImage = new Toast();
 
                 toastImage.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                 toastImage.setDuration(Toast.LENGTH_LONG);
