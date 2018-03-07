@@ -30,7 +30,7 @@ import android.graphics.BitmapFactory;
 import android.content.Context;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.IOException;
+import java.io.IOException;
 import java.net.URL;
 import java.io.InputStream;
 
