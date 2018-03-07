@@ -33,6 +33,8 @@ import java.net.MalformedURLException;
 import java.io.IOException;
 import java.net.URL;
 import java.io.InputStream;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 
 
