@@ -31,6 +31,7 @@ import android.content.Context;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.io.InputStream;
 
 
 
@@ -256,6 +257,8 @@ public class Toast extends CordovaPlugin {
 
     private void showWithImage(String message, String url,CallbackContext callbackContext) {
 
+      try{
+
             cordova.getActivity().runOnUiThread(new Runnable() {
         public void run() {
 
@@ -317,7 +320,8 @@ public class Toast extends CordovaPlugin {
         }
       });
 
-
+}catch(exception e){callbackContext.error(e);
+}
 
   }
 
