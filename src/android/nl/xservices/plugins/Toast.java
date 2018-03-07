@@ -251,7 +251,10 @@ public class Toast extends CordovaPlugin {
 
     private void showWithImage(String message, String url,CallbackContext callbackContext) {
 
-        if (message == null || message.length() == 0) {
+            cordova.getActivity().runOnUiThread(new Runnable() {
+        public void run() {
+
+                  if (message == null || message.length() == 0) {
             callbackContext.error("Empty message!");
         } else {
 
@@ -281,7 +284,7 @@ public class Toast extends CordovaPlugin {
 
 
 
-                Toast toastImage = new Toast();
+                Toast toastImage = new Toast(contextToast);
 
                 toastImage.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                 toastImage.setDuration(Toast.LENGTH_LONG);
@@ -294,6 +297,11 @@ public class Toast extends CordovaPlugin {
 
 
         }
+ 
+        }
+      });
+
+
 
   }
 
