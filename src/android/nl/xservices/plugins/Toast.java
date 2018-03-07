@@ -334,7 +334,7 @@ Log.i("lleguee", "final");
         }
       });
 
-}catch(Exception e){callbackContext.error(e.toString()); Log.i("lleguee", ex.toString());}
+}catch(Exception e){callbackContext.error(e.toString()); Log.i("lleguee", e.toString());}
 
   }
 
