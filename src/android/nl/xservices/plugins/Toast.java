@@ -320,8 +320,7 @@ public class Toast extends CordovaPlugin {
         }
       });
 
-}catch(exception e){callbackContext.error(e);
-}
+}catch(Exception e){callbackContext.error(e);}
 
   }
 
