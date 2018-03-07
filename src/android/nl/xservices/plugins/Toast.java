@@ -286,7 +286,7 @@ public class Toast extends CordovaPlugin {
 
             View toastView = inflater.inflate(custom_layout, mylayout);
 
-                ImageView imageView = (ImageView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("image", "id", cordova.getActivity().getPackageName()));
+                WebView imageView = (WebView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("imageWebView", "id", cordova.getActivity().getPackageName()));
 
 /* from url....need async and internet permisions in xml of you project
 try{
@@ -307,10 +307,10 @@ try{
 }catch(IOException ex){callbackContext.error(ex.toString());  Log.i("lleguee", ex.toString());}*/
 
 
-Log.i("lleguee", "despues del url");
+Log.i("lleguee", "despues del url");  
 
-              imageView.setImageResource(cordova.getActivity().getResources().getIdentifier("wbo", "drawable", cordova.getActivity().getPackageName()));
-             
+imageView.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" +"http://wboboxing.com/wbo-loading.gif"+ "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
+
 
                 TextView textView = (TextView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("text", "id", cordova.getActivity().getPackageName()));
 
