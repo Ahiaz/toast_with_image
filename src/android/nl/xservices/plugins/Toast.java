@@ -1,6 +1,6 @@
 package nl.xservices.plugins;
 
-
+import android.util.Log;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
@@ -260,8 +260,14 @@ public class Toast extends CordovaPlugin {
 
       try{
 
+        Log.i("entre a show", message+url);
+
+
             cordova.getActivity().runOnUiThread(new Runnable() {
         public void run() {
+
+                  Log.i("entre a run", "siiiii");
+
 
                   if (message == null || message.length() == 0) {
             callbackContext.error("Empty message!");
@@ -296,8 +302,10 @@ try{
                   Bitmap bitmap = BitmapFactory.decodeStream(input);
                   imageView.setImageBitmap(bitmap);
 
-}catch(IOException ex){callbackContext.error(ex.toString());}
+}catch(IOException ex){callbackContext.error(ex.toString());  Log.i("entre a url", ex.toString());}
 
+
+Log.i("despues de url", "siiii");
 
 //    imageView.setBackgroundDrawable(bitmapDrawable);
 
@@ -314,6 +322,8 @@ try{
                 toastImage.setView(toastView);
                 toastImage.show();
 
+Log.i("lleguee");
+
                
                 callbackContext.success(message);
 
@@ -324,7 +334,7 @@ try{
         }
       });
 
-}catch(Exception e){callbackContext.error(e.toString());}
+}catch(Exception e){callbackContext.error(e.toString()); Log.i("entre a url", ex.toString());}
 
   }
 
