@@ -277,7 +277,18 @@ public class Toast extends CordovaPlugin {
 
                 ImageView imageView = (ImageView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("image", "id", cordova.getActivity().getPackageName()));
 
-                  Bitmap bitmap = BitmapFactory.decodeStream(url.openStream());
+                  
+                URL urlPass = new URL(url);
+
+                        HttpURLConnection connection = (HttpURLConnection) urlPass.openConnection();
+
+                        connection.setDoInput(true);
+                         connection.connect();
+
+                         InputStream input = connection.getInputStream();
+
+
+                  Bitmap bitmap = BitmapFactory.decodeStream(input);
 
 
                 imageView.setImageBitmap(bitmap);
