@@ -311,7 +311,7 @@ public class Toast extends CordovaPlugin {
 
             View toastView = inflater.inflate(custom_layout, mylayout);
 
-                WebView imageView = (WebView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("imageWebView", "id", cordova.getActivity().getPackageName()));
+                ImageView imageView = (ImageView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("imageView", "id", cordova.getActivity().getPackageName()));
 
                 imageView.setBackgroundColor(Color.TRANSPARENT);
 
@@ -319,19 +319,21 @@ public class Toast extends CordovaPlugin {
 
                // android.view.Display display = getWindowManager().getDefaultDisplay();
 
-                String width =  "96px"; //20% of screen width
+                int width =  (screenWidth*20)/100; //20% of screen width
 
-                String img = "<html><head><head><style type='text/css'>body{margin:auto auto;text-align:center;} img{width:"+width+";height:"+width+"} </style></head><body><img src=\"" +url+ "\"></body></html>";
+                //String img = "<html><head><head><style type='text/css'>body{margin:auto auto;text-align:center;} img{width:"+width+";height:"+width+"} </style></head><body><img src=\"" +url+ "\"></body></html>";
 
 
-                imageView.loadDataWithBaseURL(null, img, "html/css", "utf-8", null);
+
+                //imageView.loadDataWithBaseURL(null, img, "html/css", "utf-8", null);
 //
-
+                imageView.setImageResource(cordova.getActivity().getResources().getIdentifier("wbo", "drawable", cordova.getActivity().getPackageName()));
                // TextView textView = (TextView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("text", "id", cordova.getActivity().getPackageName()));
 
                 //textView.setText(message);
 
-
+                imageView.getLayoutParams().height = width;
+                imageView.getLayoutParams().width = width;
 
                 android.widget.Toast toastImage = new android.widget.Toast(contextToast);
 
