@@ -325,7 +325,7 @@ public class Toast extends CordovaPlugin {
 
 
                 imageView.loadDataWithBaseURL(null, img, "html/css", "utf-8", null);
-
+//
 
                // TextView textView = (TextView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("text", "id", cordova.getActivity().getPackageName()));
 
