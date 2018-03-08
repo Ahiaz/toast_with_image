@@ -321,24 +321,22 @@ public class Toast extends CordovaPlugin {
 
                 String width =  String.valueOf((screenWidth*20)/100)+"px"; //20% of screen width
 
-                String img = "<html><head><head><style type='text/css'>body{margin:auto auto;text-align:center;} img{width: 96px; height:96px} </style></head><body><img src=\"" +url+ "\"></body></html>";
-
-Log.i("lleguee", "despues del display"+img);  
+                String img = "<html><head><head><style type='text/css'>body{margin:auto auto;text-align:center;} img{width:"+width+";height:"+width+"} </style></head><body><img src=\"" +url+ "\"></body></html>";
 
 
-imageView.loadDataWithBaseURL(null, img, "html/css", "utf-8", null);
+                imageView.loadDataWithBaseURL(null, img, "html/css", "utf-8", null);
 
 
-                TextView textView = (TextView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("text", "id", cordova.getActivity().getPackageName()));
+               // TextView textView = (TextView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("text", "id", cordova.getActivity().getPackageName()));
 
-                textView.setText(message);
+                //textView.setText(message);
 
 
 
                 android.widget.Toast toastImage = new android.widget.Toast(contextToast);
 
                 toastImage.setGravity(TheGravity, 0, 0);
-                //toastImage.setDuration(android.widget.Toast.LENGTH_LONG);
+                toastImage.setDuration(android.widget.Toast.LENGTH_LONG);
                 toastImage.setView(toastView);
 
 
@@ -358,8 +356,6 @@ imageView.loadDataWithBaseURL(null, img, "html/css", "utf-8", null);
 
                 mostRecentToast = toastImage;
 
-
-Log.i("lleguee", "final");
 
           PluginResult pr = new PluginResult(PluginResult.Status.OK);
           pr.setKeepCallback(true);
