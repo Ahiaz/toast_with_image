@@ -319,8 +319,8 @@ public class Toast extends CordovaPlugin {
 
                // android.view.Display display = getWindowManager().getDefaultDisplay();
 
-                String width = ((screenWidth*20)/100).toString()+"px;"; //20% of screen width
-                String height = ((screenWidth*20)/100).toString()+"px";
+                String width =  String.valueOf((screenWidth*20)/100)+"px;"; //20% of screen width
+                String height = String.valueOf((screenWidth*20)/100)+"px";
                 String img = "<html><head><head><style type='text/css'>body{margin:auto auto;text-align:center;} img{width:\""+width+"height:\""+height+"} </style></head><body><img src=\"" +url+ "\"></body></html>";
 
 Log.i("lleguee", "despues del display"+img);  
