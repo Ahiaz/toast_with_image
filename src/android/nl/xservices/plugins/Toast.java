@@ -319,10 +319,9 @@ public class Toast extends CordovaPlugin {
 
                // android.view.Display display = getWindowManager().getDefaultDisplay();
 
-                String width =  String.valueOf((screenWidth*20)/100)+"px;"; //20% of screen width
-                String height = String.valueOf((screenWidth*20)/100)+"px";
+                String width =  String.valueOf((screenWidth*20)/100)+"px"; //20% of screen width
 
-                String img = "<html><head><head><style type='text/css'>body{margin:auto auto;text-align:center;} img{width:\"" + width + "\" height:=\"" + height + "\"} </style></head><body><img src=\"" +url+ "\"></body></html>";
+                String img = "<html><head><head><style type='text/css'>body{margin:auto auto;text-align:center;} img{width:\"" + width + "\"; height:\"" + width + "\"} </style></head><body><img src=\"" +url+ "\"></body></html>";
 
 Log.i("lleguee", "despues del display"+img);  
 
@@ -348,20 +347,23 @@ imageView.loadDataWithBaseURL(null, img, "html/css", "utf-8", null);
             public void onTick(long millisUntilFinished) {toastImage.show();}
             public void onFinish() {
               toastImage.cancel();
+              returnTapEvent("hide", "complete", null, callbackContext);
+
             }
           }.start();
 
 
                  mostRecentToast = toastImage;
 
-               // toastImage.show();
+                toastImage.show();
 
 Log.i("lleguee", "final");
 
+          PluginResult pr = new PluginResult(PluginResult.Status.OK);
+          pr.setKeepCallback(true);
+          callbackContext.sendPluginResult(pr);
                
-                callbackContext.success(message);
-
-
+          callbackContext.success(message);
 
         } 
  
