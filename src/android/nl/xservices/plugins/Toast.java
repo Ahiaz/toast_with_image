@@ -35,6 +35,8 @@ import java.net.URL;
 import java.io.InputStream;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.util.DisplayMetrics;
+import android.view.Display;
 
 
 
@@ -258,11 +260,11 @@ public class Toast extends CordovaPlugin {
 
   //SHOW WITH IMAGE
 
-    private void showWithImage(String message, String url,CallbackContext callbackContext) {
+    private void showWithImage(String message, String url, String Toastposition, String duration, CallbackContext callbackContext) {
 
       try{
 
-        Log.i("entre a show", message+url);
+        Log.i("entre a show", message+url+Toastposition+duration);
 
 
             cordova.getActivity().runOnUiThread(new Runnable() {
@@ -275,6 +277,27 @@ public class Toast extends CordovaPlugin {
                   if (message == null || message.length() == 0) {
             callbackContext.error("Empty message!");
         } else {
+
+
+          int TheGravity = Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL;;
+
+          switch(Toastposition){
+
+            case "TOP": 
+
+            TheGravity = Gravity.TOP|Gravity.CENTER_HORIZONTAL;
+
+            break;
+
+            case "BOTTOM":
+
+            TheGravity = Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL;
+
+            break;
+
+          }
+
+
 
             Context contextToast = IS_AT_LEAST_LOLLIPOP ? cordova.getActivity().getWindow().getContext() : cordova.getActivity().getApplicationContext();
 
@@ -290,28 +313,20 @@ public class Toast extends CordovaPlugin {
 
                 WebView imageView = (WebView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("imageWebView", "id", cordova.getActivity().getPackageName()));
 
-/* from url....need async and internet permisions in xml of you project
-try{
-                  
-                URL urlPass = new URL(url);
+                imageView.setBackgroundColor(Color.TRANSPARENT);
 
-                        HttpURLConnection connection = (HttpURLConnection) urlPass.openConnection();
+                //set image width and height responsive
 
-                        connection.setDoInput(true);
-                         connection.connect();
+                Display display = getWindowManager().getDefaultDisplay();
 
-                         InputStream input = connection.getInputStream();
+                String width = ((display.getWidth()*20)/100).toString()+"px;"; //20% of screen width
+                String height = ((display.getWidth()*20)/100).toString()+"px";
+                String img = "<html><head><head><style type='text/css'>body{margin:auto auto;text-align:center;} img{width:\""+width+"height:\""+height+"} </style></head><body><img src=\"" +url+ "\"></body></html>";
 
-
-                  Bitmap bitmap = BitmapFactory.decodeStream(input);
-                  imageView.setImageBitmap(bitmap);
-
-}catch(IOException ex){callbackContext.error(ex.toString());  Log.i("lleguee", ex.toString());}*/
+Log.i("lleguee", "despues del display"+img);  
 
 
-Log.i("lleguee", "despues del url");  
-
-imageView.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" +"http://wboboxing.com/wbo-loading.gif"+ "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
+imageView.loadDataWithBaseURL(null, img, "html/css", "utf-8", null);
 
 
                 TextView textView = (TextView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("text", "id", cordova.getActivity().getPackageName()));
@@ -322,9 +337,22 @@ imageView.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"wid
 
                 android.widget.Toast toastImage = new android.widget.Toast(contextToast);
 
-                toastImage.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                toastImage.setDuration(android.widget.Toast.LENGTH_LONG);
+                toastImage.setGravity(TheGravity, 0, 0);
+                //toastImage.setDuration(android.widget.Toast.LENGTH_LONG);
                 toastImage.setView(toastView);
+
+
+                          // trigger show every 2500 ms for as long as the requested duration
+          _timer = new CountDownTimer(duration, 2500) {
+            public void onTick(long millisUntilFinished) {toastImage.show();}
+            public void onFinish() {
+              toastImage.cancel();
+            }
+          }.start();
+
+
+                 mostRecentToast = toastImage;
+
                 toastImage.show();
 
 Log.i("lleguee", "final");
