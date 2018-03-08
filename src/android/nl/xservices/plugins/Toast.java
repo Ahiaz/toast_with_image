@@ -321,7 +321,7 @@ public class Toast extends CordovaPlugin {
 
                 String width =  String.valueOf((screenWidth*20)/100)+"px"; //20% of screen width
 
-                String img = "<html><head><head><style type='text/css'>body{margin:auto auto;text-align:center;} img{width:\"" + width + "\"; height:\"" + width + "\"} </style></head><body><img src=\"" +url+ "\"></body></html>";
+                String img = "<html><head><head><style type='text/css'>body{margin:auto auto;text-align:center;} img{width: 96px; height:96px} </style></head><body><img src=\"" +url+ "\"></body></html>";
 
 Log.i("lleguee", "despues del display"+img);  
 
@@ -347,15 +347,17 @@ imageView.loadDataWithBaseURL(null, img, "html/css", "utf-8", null);
             public void onTick(long millisUntilFinished) {toastImage.show();}
             public void onFinish() {
               toastImage.cancel();
-              returnTapEvent("hide", "complete", null, callbackContext);
-
+              _timer = null;
             }
-          }.start();
+          };
 
-
-                 mostRecentToast = toastImage;
 
                 toastImage.show();
+
+                _timer.start();
+
+                mostRecentToast = toastImage;
+
 
 Log.i("lleguee", "final");
 
