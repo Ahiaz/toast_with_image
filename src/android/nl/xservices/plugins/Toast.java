@@ -70,7 +70,7 @@ public class Toast extends CordovaPlugin {
 
 
     if (ACTION_SHOW_IMAGE_EVENT.equals(action)) { //Image option
-      showWithImage(args.getString(0), args.getString(1), callbackContext); // first parameter (message) and callback or value
+      showWithImage(args.getString(0), args.getString(1), args.getString(2), args.getString(3), args.getString(4), callbackContext); // first parameter (message) and callback or value
       callbackContext.success();
 
       return true;
@@ -260,11 +260,11 @@ public class Toast extends CordovaPlugin {
 
   //SHOW WITH IMAGE
 
-    private void showWithImage(String message, String url, String Toastposition, String duration, CallbackContext callbackContext) {
+    private void showWithImage(String message, String url, String Toastposition, int duration, int screenWidth, CallbackContext callbackContext) {
 
       try{
 
-        Log.i("entre a show", message+url+Toastposition+duration);
+        Log.i("entre a show", message+url+Toastposition+duration+"size"+screenWidth);
 
 
             cordova.getActivity().runOnUiThread(new Runnable() {
@@ -317,10 +317,10 @@ public class Toast extends CordovaPlugin {
 
                 //set image width and height responsive
 
-                Display display = getWindowManager().getDefaultDisplay();
+               // android.view.Display display = getWindowManager().getDefaultDisplay();
 
-                String width = ((display.getWidth()*20)/100).toString()+"px;"; //20% of screen width
-                String height = ((display.getWidth()*20)/100).toString()+"px";
+                String width = ((screenWidth*20)/100).toString()+"px;"; //20% of screen width
+                String height = ((screenWidth*20)/100).toString()+"px";
                 String img = "<html><head><head><style type='text/css'>body{margin:auto auto;text-align:center;} img{width:\""+width+"height:\""+height+"} </style></head><body><img src=\"" +url+ "\"></body></html>";
 
 Log.i("lleguee", "despues del display"+img);  
