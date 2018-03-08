@@ -70,7 +70,7 @@ public class Toast extends CordovaPlugin {
 
 
     if (ACTION_SHOW_IMAGE_EVENT.equals(action)) { //Image option
-      showWithImage(args.getString(0), args.getString(1), args.getString(2), args.getString(3), args.getString(4), callbackContext); // first parameter (message) and callback or value
+      showWithImage(args.getString(0), args.getString(1), args.getInt(2), args.getInt(3), args.getInt(4), callbackContext); // first parameter (message) and callback or value
       callbackContext.success();
 
       return true;
