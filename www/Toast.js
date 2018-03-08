@@ -88,7 +88,9 @@ Toast.prototype.hide = function (successCallback, errorCallback) {
 };
 
 Toast.prototype.showWithImage = function (message, url, position, duration, screenSize, successCallback, errorCallback) {
-  screenSize = window.screen.width * window.devicePixelRatio;
+  
+  screenSize = parseInt(window.screen.width * window.devicePixelRatio);
+  duration = parseInt(duration);
   cordova.exec(successCallback, errorCallback, "Toast", "showWithImage", [message,url,position,duration,screenSize]); //options: url, message 
 };
 
