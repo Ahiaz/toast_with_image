@@ -336,16 +336,15 @@ public class Toast extends CordovaPlugin {
                 android.widget.Toast toastImage = new android.widget.Toast(contextToast);
 
                 toastImage.setGravity(TheGravity, 0, 0);
-                //toastImage.setDuration(android.widget.Toast.LENGTH_LONG);
+                toastImage.setDuration(android.widget.Toast.LENGTH_LONG);
                 toastImage.setView(toastView);
 
 
                           // trigger show every 2500 ms for as long as the requested duration
-          _timer = new CountDownTimer(duration, 2500) {
+          _timer = new CountDownTimer(duration, 1000) {
             public void onTick(long millisUntilFinished) {toastImage.show();}
             public void onFinish() {
               toastImage.cancel();
-              _timer = null;
             }
           };
 
