@@ -313,7 +313,7 @@ public class Toast extends CordovaPlugin {
 
                 ImageView imageView = (ImageView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("imageView", "id", cordova.getActivity().getPackageName()));
 
-                imageView.setBackgroundColor(Color.TRANSPARENT);
+               // imageView.setBackgroundColor(Color.TRANSPARENT);
 
                 //set image width and height responsive
 
@@ -328,12 +328,12 @@ public class Toast extends CordovaPlugin {
                 //imageView.loadDataWithBaseURL(null, img, "html/css", "utf-8", null);
 //
                 imageView.setImageResource(cordova.getActivity().getResources().getIdentifier("wbo", "drawable", cordova.getActivity().getPackageName()));
-               // TextView textView = (TextView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("text", "id", cordova.getActivity().getPackageName()));
+               TextView textView = (TextView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("text", "id", cordova.getActivity().getPackageName()));
 
-                //textView.setText(message);
+                textView.setText(message);
 
-                imageView.getLayoutParams().height = width;
-                imageView.getLayoutParams().width = width;
+              //  imageView.getLayoutParams().height = width;
+                //imageView.getLayoutParams().width = width;
 
                 android.widget.Toast toastImage = new android.widget.Toast(contextToast);
 
