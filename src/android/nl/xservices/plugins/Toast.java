@@ -319,7 +319,7 @@ public class Toast extends CordovaPlugin {
 
                // android.view.Display display = getWindowManager().getDefaultDisplay();
 
-                int width =  (screenWidth*10)/100; //20% of screen width
+                int width =  (screenWidth*30)/100; //20% of screen width
 
                 //String img = "<html><head><head><style type='text/css'>body{margin:auto auto;text-align:center;} img{width:"+width+";height:"+width+"} </style></head><body><img src=\"" +url+ "\"></body></html>";
 
@@ -330,7 +330,7 @@ public class Toast extends CordovaPlugin {
                 imageView.setImageResource(cordova.getActivity().getResources().getIdentifier("wbo", "drawable", cordova.getActivity().getPackageName()));
                TextView textView = (TextView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("text", "id", cordova.getActivity().getPackageName()));
 
-                textView.setText(message);
+                //textView.setText(message);
 
               imageView.getLayoutParams().height = width;
                 imageView.getLayoutParams().width = width;
@@ -343,7 +343,7 @@ public class Toast extends CordovaPlugin {
 
 
                           // trigger show every 2500 ms for as long as the requested duration
-          _timer = new CountDownTimer(duration, 1000) {
+          _timer = new CountDownTimer(duration, 3000) {
             public void onTick(long millisUntilFinished) {toastImage.show();}
             public void onFinish() {
               toastImage.cancel();
