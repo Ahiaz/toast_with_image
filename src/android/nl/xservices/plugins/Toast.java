@@ -79,9 +79,9 @@ public class Toast extends CordovaPlugin {
 
       }
 
-      else{
+      else{ //from url
 
-        //function .............
+      showWithImageFromUrl(args.getString(0), args.getString(1), args.getInt(2), args.getInt(3), args.getInt(4), args.getString(5), args.getInt(6), callbackContext); // callback or value
 
 
       }
@@ -275,6 +275,119 @@ public class Toast extends CordovaPlugin {
 
   //SHOW WITH IMAGE
 
+
+
+      private void showWithImageFromUrl( /*String message,*/ String url, String Toastposition, int duration, int screenWidth, int blinking, String from, int percentage, CallbackContext callbackContext) {
+
+      try{
+
+        Log.i("entre a showURL", url+Toastposition+duration+"size"+screenWidth+"blinking"+blinking+from+percentage);
+
+
+            cordova.getActivity().runOnUiThread(new Runnable() {
+        public void run() {
+
+
+                  Log.i("lleguee", "inicio");
+
+
+          int TheGravity = Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL;
+
+          switch(Toastposition){
+
+            case "TOP": 
+
+            TheGravity = Gravity.TOP|Gravity.CENTER_HORIZONTAL;
+
+            break;
+
+            case "BOTTOM":
+
+            TheGravity = Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL;
+
+            break;
+
+          }
+
+
+
+            Context contextToast = IS_AT_LEAST_LOLLIPOP ? cordova.getActivity().getWindow().getContext() : cordova.getActivity().getApplicationContext();
+
+            // Retrieve the resource
+            int custom_layout = cordova.getActivity().getResources().getIdentifier("toast", "layout", cordova.getActivity().getPackageName());
+
+
+             LayoutInflater inflater =  cordova.getActivity().getLayoutInflater();
+
+             ViewGroup mylayout = (ViewGroup) cordova.getActivity().findViewById(cordova.getActivity().getResources().getIdentifier("toastLayout", "id", cordova.getActivity().getPackageName()));
+
+            View toastView = inflater.inflate(custom_layout, mylayout);
+
+                ImageView imageView = (ImageView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("imageView", "id", cordova.getActivity().getPackageName()));
+
+
+
+                int width =  (screenWidth*percentage)/100; //% of screen width (square shape logo)
+
+                //String img = "<html><head><head><style type='text/css'>body{margin:auto auto;text-align:center;} img{width:"+width+";height:"+width+"} </style></head><body><img src=\"" +url+ "\"></body></html>";
+
+
+
+                //imageView.loadDataWithBaseURL(null, img, "html/css", "utf-8", null);
+                Picasso.with(contextToast).load(url).into(imageView);
+
+
+                //imageView.setImageResource(cordova.getActivity().getResources().getIdentifier(url, "drawable", cordova.getActivity().getPackageName()));
+
+
+                
+//
+               //TextView textView = (TextView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("text", "id", cordova.getActivity().getPackageName()));
+
+                //textView.setText(message);
+
+                imageView.getLayoutParams().height = width;
+                imageView.getLayoutParams().width = width;
+
+                android.widget.Toast toastImage = new android.widget.Toast(contextToast);
+
+                toastImage.setGravity(TheGravity, 0, 0);
+               // toastImage.setDuration(android.widget.Toast.LENGTH_LONG);
+                toastImage.setView(toastView);
+
+
+                          // trigger show every 3000 ms for as long as the requested duration
+          _timer = new CountDownTimer(duration, blinking) {
+            public void onTick(long millisUntilFinished) {toastImage.show();}
+            public void onFinish() {
+              toastImage.cancel();
+            }
+          };
+
+
+                toastImage.show();
+
+                _timer.start();
+
+                mostRecentToast = toastImage;
+
+
+          PluginResult pr = new PluginResult(PluginResult.Status.OK);
+          pr.setKeepCallback(true);
+          callbackContext.sendPluginResult(pr);
+               
+          callbackContext.success(message);
+
+        
+ 
+        }
+      });
+
+}catch(Exception e){callbackContext.error(e.toString()); Log.i("lleguee", e.toString());}
+
+  }
+
+
     private void showWithImage( /*String message,*/ String url, String Toastposition, int duration, int screenWidth, int blinking, String from, int percentage, CallbackContext callbackContext) {
 
       try{
@@ -289,12 +402,7 @@ public class Toast extends CordovaPlugin {
                   Log.i("lleguee", "inicio");
 
 
-                  if (message == null || message.length() == 0) {
-            callbackContext.error("Empty message!");
-        } else {
-
-
-          int TheGravity = Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL;;
+          int TheGravity = Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL;
 
           switch(Toastposition){
 
@@ -341,8 +449,7 @@ public class Toast extends CordovaPlugin {
 
 
                 //imageView.loadDataWithBaseURL(null, img, "html/css", "utf-8", null);
-
-               
+          
 
                 imageView.setImageResource(cordova.getActivity().getResources().getIdentifier(url, "drawable", cordova.getActivity().getPackageName()));
 
@@ -385,7 +492,7 @@ public class Toast extends CordovaPlugin {
                
           callbackContext.success(message);
 
-        } 
+        
  
         }
       });
@@ -428,28 +535,6 @@ public class Toast extends CordovaPlugin {
   public void onResume(boolean multitasking) {
     this.isPaused = false;
   }
-}
+} //here
 
-
-
-public class loaderImageUrl extends AsyncTask<String, String, Bitmap> {
-
-            @Override
-            protected void onPreExecute() 
-            {
-            super.onPreExecute();
-            }
-            @Override
-            protected String doInBackground(Void... arg0)
-            {
-               //Record method 
-            }
-
-            @Override
-            protected void onPostExecute(String result) 
-            {
-                super.onPostExecute(result);
-
-            }
-        }
-    }
+    
