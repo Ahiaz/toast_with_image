@@ -334,7 +334,7 @@ public class Toast extends CordovaPlugin {
 
 
                 //imageView.loadDataWithBaseURL(null, img, "html/css", "utf-8", null);
-                Picasso.with(contextToast).load(url).into(imageView);
+                Picasso.get().load(url).into(imageView);
 
 
                 //imageView.setImageResource(cordova.getActivity().getResources().getIdentifier(url, "drawable", cordova.getActivity().getPackageName()));
