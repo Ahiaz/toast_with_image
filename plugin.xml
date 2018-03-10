@@ -12,15 +12,15 @@
     Added option to load image in toast by Ahiaz (jahiaz@gmail.com)
   </description>
 
-  <author>Eddy Verbruggen</author>
+  <author>Eddy Verbruggen modify by Ahiaz Vargas</author>
 
   <license>MIT</license>
 
-  <keywords>Toast, Notification, Message, Alert</keywords>
+  <keywords>Toast, Notification, Message, Alert, Toast with image</keywords>
 
-  <repo>https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git</repo>
+  <repo>https://github.com/Ahiaz/toast_with_image.git</repo>
 
-  <issue>https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin/issues</issue>
+  <issue>https://github.com/Ahiaz/toast_with_image/issues</issue>
 
   <engines>
     <engine name="cordova" version=">=3.0.0"/>
@@ -60,10 +60,13 @@
     </config-file>
 
     <source-file src="src/android/nl/xservices/plugins/Toast.java" target-dir="src/nl/xservices/plugins"/>
+
+    <!--if you wanna uses resources in your project must be declared here-->
     <resource-file src="src/android/nl/xservices/plugins/res/drawable/wbo.png" target="res/drawable/wbo.png" />
     <resource-file src="src/android/nl/xservices/plugins/res/drawable/wboloading.gif" target="res/drawable/wboloading.gif" />
     <resource-file src="src/android/nl/xservices/plugins/res/layout/toast.xml" target="res/layout/toast.xml" />
     <resource-file src="src/android/nl/xservices/plugins/res/layout/roundborder.xml" target="res/layout/roundborder.xml" />
+    <framework src="com.squareup.picasso:picasso:2.71828" /> <!--add gradle picasso-->
   </platform>
 
   <!-- wp8 -->

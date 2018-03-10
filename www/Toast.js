@@ -87,11 +87,12 @@ Toast.prototype.hide = function (successCallback, errorCallback) {
   cordova.exec(successCallback, errorCallback, "Toast", "hide", []);
 };
 
-Toast.prototype.showWithImage = function (message, url, position, duration, screenSize, successCallback, errorCallback) {
-  
-  screenSize = parseInt(window.screen.width * window.devicePixelRatio);
+Toast.prototype.showWithImage = function (url, position, duration,  blinking, from, percentage, successCallback, errorCallback) { // from url or resource, 
+var screenSize = parseInt(window.screen.width * window.devicePixelRatio);
   duration = parseInt(duration);
-  cordova.exec(successCallback, errorCallback, "Toast", "showWithImage", [message,url,position,duration,screenSize]); //options: url, message 
+  blinking = parseInt(blinking);
+  
+  cordova.exec(successCallback, errorCallback, "Toast", "showWithImage", [url,position,duration,screenSize,blinking, from, percentage]); //options by Ahiaz (jahiaz@gmail.com) 
 };
 
 Toast.install = function () {

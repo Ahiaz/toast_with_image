@@ -37,6 +37,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.util.DisplayMetrics;
 import android.view.Display;
+import android.os.AsyncTask;
+import com.squareup.picasso
 
 
 
@@ -70,10 +72,23 @@ public class Toast extends CordovaPlugin {
 
 
     if (ACTION_SHOW_IMAGE_EVENT.equals(action)) { //Image option
-      showWithImage(args.getString(0), args.getString(1), args.getString(2), args.getInt(3), args.getInt(4), callbackContext); // first parameter (message) and callback or value
+
+      if(args.getString(5).equals("resource")){
+
+      showWithImage(args.getString(0), args.getString(1), args.getInt(2), args.getInt(3), args.getInt(4), args.getString(5), args.getInt(6), callbackContext); // callback or value
+
+      }
+
+      else{
+
+        //function .............
+
+
+      }
       callbackContext.success();
 
       return true;
+
 
     }
 
@@ -260,11 +275,11 @@ public class Toast extends CordovaPlugin {
 
   //SHOW WITH IMAGE
 
-    private void showWithImage(String message, String url, String Toastposition, int duration, int screenWidth, CallbackContext callbackContext) {
+    private void showWithImage( /*String message,*/ String url, String Toastposition, int duration, int screenWidth, int blinking, String from, int percentage, CallbackContext callbackContext) {
 
       try{
 
-        Log.i("entre a show", message+url+Toastposition+duration+"size"+screenWidth);
+        Log.i("entre a show", url+Toastposition+duration+"size"+screenWidth+"blinking"+blinking+from+percentage);
 
 
             cordova.getActivity().runOnUiThread(new Runnable() {
@@ -319,16 +334,22 @@ public class Toast extends CordovaPlugin {
 
                // android.view.Display display = getWindowManager().getDefaultDisplay();
 
-                int width =  (screenWidth*30)/100; //20% of screen width
+                int width =  (screenWidth*percentage)/100; //% of screen width (square shape logo)
 
                 //String img = "<html><head><head><style type='text/css'>body{margin:auto auto;text-align:center;} img{width:"+width+";height:"+width+"} </style></head><body><img src=\"" +url+ "\"></body></html>";
 
 
 
                 //imageView.loadDataWithBaseURL(null, img, "html/css", "utf-8", null);
+
+               
+
+                imageView.setImageResource(cordova.getActivity().getResources().getIdentifier(url, "drawable", cordova.getActivity().getPackageName()));
+
+
+                
 //
-                imageView.setImageResource(cordova.getActivity().getResources().getIdentifier("wbo", "drawable", cordova.getActivity().getPackageName()));
-               TextView textView = (TextView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("text", "id", cordova.getActivity().getPackageName()));
+               //TextView textView = (TextView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("text", "id", cordova.getActivity().getPackageName()));
 
                 //textView.setText(message);
 
@@ -342,8 +363,8 @@ public class Toast extends CordovaPlugin {
                 toastImage.setView(toastView);
 
 
-                          // trigger show every 2500 ms for as long as the requested duration
-          _timer = new CountDownTimer(duration, 3000) {
+                          // trigger show every 3000 ms for as long as the requested duration
+          _timer = new CountDownTimer(duration, blinking) {
             public void onTick(long millisUntilFinished) {toastImage.show();}
             public void onFinish() {
               toastImage.cancel();
@@ -408,3 +429,27 @@ public class Toast extends CordovaPlugin {
     this.isPaused = false;
   }
 }
+
+
+
+public class loaderImageUrl extends AsyncTask<String, String, Bitmap> {
+
+            @Override
+            protected void onPreExecute() 
+            {
+            super.onPreExecute();
+            }
+            @Override
+            protected String doInBackground(Void... arg0)
+            {
+               //Record method 
+            }
+
+            @Override
+            protected void onPostExecute(String result) 
+            {
+                super.onPostExecute(result);
+
+            }
+        }
+    }
