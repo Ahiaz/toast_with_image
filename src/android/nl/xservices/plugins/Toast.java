@@ -38,7 +38,7 @@ import android.webkit.WebViewClient;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.os.AsyncTask;
-import com.squareup.picasso;
+import com.squareup.picasso.Picasso;
 
 
 
@@ -376,7 +376,7 @@ public class Toast extends CordovaPlugin {
           pr.setKeepCallback(true);
           callbackContext.sendPluginResult(pr);
                
-          callbackContext.success(message);
+          callbackContext.success("complete");
 
         
  
@@ -490,7 +490,7 @@ public class Toast extends CordovaPlugin {
           pr.setKeepCallback(true);
           callbackContext.sendPluginResult(pr);
                
-          callbackContext.success(message);
+          callbackContext.success("complete");
 
         
  
