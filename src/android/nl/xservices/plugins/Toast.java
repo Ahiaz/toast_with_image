@@ -38,7 +38,7 @@ import android.webkit.WebViewClient;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.os.AsyncTask;
-import com.squareup.picasso
+import com.squareup.picasso;
 
 
 
