@@ -2,7 +2,7 @@
 
 I was develop this plugin for a requirement that inappbrowser doesnt supply it (loading an image when navigate throught the pages)
 
-# INSTALL FROM CMD: cordova plugin add https://github.com/Ahiaz/toast_with_image
+** INSTALL FROM CMD: cordova plugin add https://github.com/Ahiaz/toast_with_image **
 
 This plugin is a modified version of https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin
 I added a function to show an image in screen with a blinking effect and the another functions remain like the original plugin.
