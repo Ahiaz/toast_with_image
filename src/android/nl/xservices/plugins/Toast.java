@@ -73,13 +73,22 @@ public class Toast extends CordovaPlugin {
 
     if (ACTION_SHOW_IMAGE_EVENT.equals(action)) { //Image option
 
+              Log.i("TOAST", "ENTRE AL TOAST");
+
+
       if(args.getString(5).equals("resource")){
+
+                      Log.i("TOAST", "ENTRE AL Resource");
+
 
       showWithImage(args.getString(0), args.getString(1), args.getInt(2), args.getInt(3), args.getInt(4), args.getString(5), args.getInt(6), callbackContext); // callback or value
 
       }
 
       else{ //from url
+
+                              Log.i("TOAST", "ENTRE AL PICASSO");
+
 
       showWithImageFromUrl(args.getString(0), args.getString(1), args.getInt(2), args.getInt(3), args.getInt(4), args.getString(5), args.getInt(6), callbackContext); // callback or value
 

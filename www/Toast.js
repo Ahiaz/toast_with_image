@@ -91,6 +91,8 @@ Toast.prototype.showWithImage = function (url, position, duration,  blinking, fr
 var screenSize = parseInt(window.screen.width * window.devicePixelRatio);
   duration = parseInt(duration);
   blinking = parseInt(blinking);
+
+  console.warn(url+position+duration+blinking+from+percentage);
   
   cordova.exec(successCallback, errorCallback, "Toast", "showWithImage", [url,position,duration,screenSize,blinking, from, percentage]); //options by Ahiaz (jahiaz@gmail.com) 
 };
