@@ -1,6 +1,6 @@
 # ABOUT THIS PLUGIN:
 
-I was develop this plugin for a requirement that inappbrowser doesnt supply it (loading an image when navigate throught the pages)
+I was develop this plugin for a requirement that inappbrowser doesnt supply it (loading an image when navigate throught the pages), only for android... ios support is coming soon
 
 ** INSTALL FROM CMD: cordova plugin add https://github.com/Ahiaz/toast_with_image **
 
