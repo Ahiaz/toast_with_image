@@ -73,12 +73,8 @@ public class Toast extends CordovaPlugin {
 
     if (ACTION_SHOW_IMAGE_EVENT.equals(action)) { //Image option
 
-              Log.i("TOAST", "ENTRE AL TOAST");
-
 
       if(args.getString(5).equals("resource")){
-
-                      Log.i("TOAST", "ENTRE AL Resource");
 
 
       showWithImage(args.getString(0), args.getString(1), args.getInt(2), args.getInt(3), args.getInt(4), args.getString(5), args.getInt(6), callbackContext); // callback or value
@@ -86,8 +82,6 @@ public class Toast extends CordovaPlugin {
       }
 
       else{ //from url
-
-                              Log.i("TOAST", "ENTRE AL PICASSO");
 
 
       showWithImageFromUrl(args.getString(0), args.getString(1), args.getInt(2), args.getInt(3), args.getInt(4), args.getString(5), args.getInt(6), callbackContext); // callback or value
@@ -290,14 +284,10 @@ public class Toast extends CordovaPlugin {
 
       try{
 
-        Log.i("entre a showURL", url+Toastposition+duration+"size"+screenWidth+"blinking"+blinking+from+percentage);
-
 
             cordova.getActivity().runOnUiThread(new Runnable() {
         public void run() {
 
-
-                  Log.i("lleguee", "inicio");
 
 
           int TheGravity = Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL;
@@ -392,7 +382,7 @@ public class Toast extends CordovaPlugin {
         }
       });
 
-}catch(Exception e){callbackContext.error(e.toString()); Log.i("lleguee", e.toString());}
+}catch(Exception e){callbackContext.error(e.toString()); Log.i("exception", e.toString());}
 
   }
 
@@ -401,14 +391,11 @@ public class Toast extends CordovaPlugin {
 
       try{
 
-        Log.i("entre a show", url+Toastposition+duration+"size"+screenWidth+"blinking"+blinking+from+percentage);
 
 
             cordova.getActivity().runOnUiThread(new Runnable() {
         public void run() {
 
-
-                  Log.i("lleguee", "inicio");
 
 
           int TheGravity = Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL;

@@ -63,10 +63,10 @@
 
     <!--if you wanna uses resources in your project must be declared here-->
     <resource-file src="src/android/nl/xservices/plugins/res/drawable/wbo.png" target="res/drawable/wbo.png" />
-    <resource-file src="src/android/nl/xservices/plugins/res/drawable/wboloading.gif" target="res/drawable/wboloading.gif" />
+    <resource-file src="src/android/nl/xservices/plugins/res/drawable/loading.png" target="res/drawable/loading.png" />
     <resource-file src="src/android/nl/xservices/plugins/res/layout/toast.xml" target="res/layout/toast.xml" />
     <resource-file src="src/android/nl/xservices/plugins/res/layout/roundborder.xml" target="res/layout/roundborder.xml" />
-    <framework src="com.squareup.picasso:picasso:2.71828" /> <!--add gradle picasso-->
+    <framework src="com.squareup.picasso:picasso:2.71828" /> <!--add gradle picasso for show images from url-->
   </platform>
 
   <!-- wp8 -->
