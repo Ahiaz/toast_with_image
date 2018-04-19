@@ -347,7 +347,7 @@ public class Toast extends CordovaPlugin {
 
                 imageView.getLayoutParams().height = width;
                 imageView.getLayoutParams().width = width;
-                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                imageView.setScaleType(ImageView.ScaleType.FIT_XY);//important to get a square image with same dimensions
 
                 android.widget.Toast toastImage = new android.widget.Toast(contextToast);
 
@@ -459,6 +459,8 @@ public class Toast extends CordovaPlugin {
 
               imageView.getLayoutParams().height = width;
                 imageView.getLayoutParams().width = width;
+               imageView.setScaleType(ImageView.ScaleType.FIT_XY); //important to get a square image with same dimensions
+
 
                 android.widget.Toast toastImage = new android.widget.Toast(contextToast);
 
