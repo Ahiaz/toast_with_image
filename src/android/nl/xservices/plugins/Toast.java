@@ -347,6 +347,7 @@ public class Toast extends CordovaPlugin {
 
                 imageView.getLayoutParams().height = width;
                 imageView.getLayoutParams().width = width;
+                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
 
                 android.widget.Toast toastImage = new android.widget.Toast(contextToast);
 
