@@ -333,7 +333,6 @@ public class Toast extends CordovaPlugin {
 
 
                 //imageView.loadDataWithBaseURL(null, img, "html/css", "utf-8", null);
-                Picasso.get().load(url).into(imageView);
 
 
                 //imageView.setImageResource(cordova.getActivity().getResources().getIdentifier(url, "drawable", cordova.getActivity().getPackageName()));
@@ -348,6 +347,7 @@ public class Toast extends CordovaPlugin {
                 imageView.getLayoutParams().height = width;
                 imageView.getLayoutParams().width = width;
                 imageView.setScaleType(ImageView.ScaleType.FIT_XY);//important to get a square image with same dimensions
+                Picasso.get().load(url).into(imageView);
 
                 android.widget.Toast toastImage = new android.widget.Toast(contextToast);
 
