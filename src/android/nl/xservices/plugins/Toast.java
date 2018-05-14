@@ -41,6 +41,7 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.os.AsyncTask;
 import com.squareup.picasso.Picasso;
+import android.view.animation.LinearInterpolator;
 
 
 
