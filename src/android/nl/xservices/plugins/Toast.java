@@ -322,7 +322,7 @@ public class Toast extends CordovaPlugin {
           //Fade animation
           
           AlphaAnimation animFade = new AlphaAnimation(0.0f, 1.0f);
-          animFade.setRepeatCount(Animation.INFINITE);
+          animFade.setRepeatCount(1);
           animFade.setRepeatMode(Animation.REVERSE);
           animFade.setDuration(duration);  
 
@@ -468,7 +468,7 @@ public class Toast extends CordovaPlugin {
            //Fade animation
           
           AlphaAnimation animFade = new AlphaAnimation(0.0f, 1.0f);
-          animFade.setRepeatCount(Animation.INFINITE);
+          animFade.setRepeatCount(1);
           animFade.setRepeatMode(Animation.REVERSE);
           animFade.setDuration(duration); 
 
