@@ -13,6 +13,7 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.RotateAnimation;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -318,6 +319,13 @@ public class Toast extends CordovaPlugin {
             animRotate.setRepeatCount(Animation.INFINITE);
             animRotate.setDuration(duration);
 
+          //Fade animation
+          
+          AlphaAnimation animFade = new AlphaAnimation(0.0f, 1.0f);
+          animFade.setRepeatCount(Animation.INFINITE);
+          animFade.setRepeatMode(Animation.REVERSE);
+          animFade.setDuration(duration);  
+
 
             Context contextToast = IS_AT_LEAST_LOLLIPOP ? cordova.getActivity().getWindow().getContext() : cordova.getActivity().getApplicationContext();
 
@@ -368,7 +376,27 @@ public class Toast extends CordovaPlugin {
                           // trigger show every 3000 ms for as long as the requested duration
           _timer = new CountDownTimer(duration, blinking) {
 
-            public void onTick(long millisUntilFinished) {toastImage.show(); imageView.startAnimation(animRotate);}
+            public void onTick(long millisUntilFinished) {toastImage.show(); 
+
+                  switch(animation){
+
+                  case "rotate":
+                  imageView.startAnimation(animRotate);
+                  break;
+
+                  case "fade":
+                  imageView.startAnimation(animFade);
+                  break;
+
+                  default:
+
+                  imageView.startAnimation(animRotate);
+                  break;
+
+
+                }
+
+            }
             public void onFinish() {
               toastImage.cancel();
               imageView.setAnimation(null);
@@ -437,6 +465,14 @@ public class Toast extends CordovaPlugin {
             animRotate.setDuration(duration);
 
 
+           //Fade animation
+          
+          AlphaAnimation animFade = new AlphaAnimation(0.0f, 1.0f);
+          animFade.setRepeatCount(Animation.INFINITE);
+          animFade.setRepeatMode(Animation.REVERSE);
+          animFade.setDuration(duration); 
+
+
             Context contextToast = IS_AT_LEAST_LOLLIPOP ? cordova.getActivity().getWindow().getContext() : cordova.getActivity().getApplicationContext();
 
             // Retrieve the resource
@@ -490,7 +526,30 @@ public class Toast extends CordovaPlugin {
                           // trigger show every 3000 ms for as long as the requested duration
           _timer = new CountDownTimer(duration, blinking) {
 
-            public void onTick(long millisUntilFinished) {toastImage.show(); imageView.startAnimation(animRotate);}
+            public void onTick(long millisUntilFinished) {
+
+
+              toastImage.show(); 
+
+                switch(animation){
+
+                  case "rotate":
+                  imageView.startAnimation(animRotate);
+                  break;
+
+                  case "fade":
+                  imageView.startAnimation(animFade);
+                  break;
+
+                  default:
+
+                  imageView.startAnimation(animRotate);
+                  break;
+
+                }
+
+
+            }
             public void onFinish() {
               toastImage.cancel();
               imageView.setAnimation(null);
