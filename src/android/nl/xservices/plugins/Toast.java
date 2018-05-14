@@ -79,7 +79,7 @@ public class Toast extends CordovaPlugin {
       if(args.getString(5).equals("resource")){
 
 
-      showWithImage(args.getString(0), args.getString(1), args.getInt(2), args.getInt(3), args.getInt(4), args.getString(5), args.getInt(6), args.getString(7) callbackContext); // callback or value
+      showWithImage(args.getString(0), args.getString(1), args.getInt(2), args.getInt(3), args.getInt(4), args.getString(5), args.getInt(6), args.getString(7), callbackContext); // callback or value
 
       }
 
