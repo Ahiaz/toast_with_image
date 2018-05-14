@@ -322,9 +322,9 @@ public class Toast extends CordovaPlugin {
           //Fade animation
           
           AlphaAnimation animFade = new AlphaAnimation(0.0f, 1.0f);
-          animFade.setRepeatCount(1);
+          animFade.setRepeatCount(Animation.INFINITE);
           animFade.setRepeatMode(Animation.REVERSE);
-          animFade.setDuration(duration);  
+          animFade.setDuration(duration/2);  
 
 
             Context contextToast = IS_AT_LEAST_LOLLIPOP ? cordova.getActivity().getWindow().getContext() : cordova.getActivity().getApplicationContext();
