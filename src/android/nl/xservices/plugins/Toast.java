@@ -12,6 +12,8 @@ import android.text.style.AlignmentSpan;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.RotateAnimation;
+import android.view.animation.Animation;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.ImageView;
@@ -77,14 +79,14 @@ public class Toast extends CordovaPlugin {
       if(args.getString(5).equals("resource")){
 
 
-      showWithImage(args.getString(0), args.getString(1), args.getInt(2), args.getInt(3), args.getInt(4), args.getString(5), args.getInt(6), callbackContext); // callback or value
+      showWithImage(args.getString(0), args.getString(1), args.getInt(2), args.getInt(3), args.getInt(4), args.getString(5), args.getInt(6), args.getString(7) callbackContext); // callback or value
 
       }
 
       else{ //from url
 
 
-      showWithImageFromUrl(args.getString(0), args.getString(1), args.getInt(2), args.getInt(3), args.getInt(4), args.getString(5), args.getInt(6), callbackContext); // callback or value
+      showWithImageFromUrl(args.getString(0), args.getString(1), args.getInt(2), args.getInt(3), args.getInt(4), args.getString(5), args.getInt(6), args.getString(7), callbackContext); // callback or value
 
 
       }
@@ -280,7 +282,7 @@ public class Toast extends CordovaPlugin {
 
 
 
-      private void showWithImageFromUrl( /*String message,*/ String url, String Toastposition, int duration, int screenWidth, int blinking, String from, int percentage, CallbackContext callbackContext) {
+      private void showWithImageFromUrl( /*String message,*/ String url, String Toastposition, int duration, int screenWidth, int blinking, String from, int percentage, String animation, CallbackContext callbackContext) {
 
       try{
 
@@ -308,6 +310,12 @@ public class Toast extends CordovaPlugin {
 
           }
 
+          //rotate animation
+
+            RotateAnimation animRotate = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            animRotate.setInterpolator(new LinearInterpolator());
+            animRotate.setRepeatCount(Animation.INFINITE);
+            animRotate.setDuration(duration);
 
 
             Context contextToast = IS_AT_LEAST_LOLLIPOP ? cordova.getActivity().getWindow().getContext() : cordova.getActivity().getApplicationContext();
@@ -358,9 +366,14 @@ public class Toast extends CordovaPlugin {
 
                           // trigger show every 3000 ms for as long as the requested duration
           _timer = new CountDownTimer(duration, blinking) {
+
+            if(animation.equals("rotate")){imageView.startAnimation(animRotate);}
+
             public void onTick(long millisUntilFinished) {toastImage.show();}
             public void onFinish() {
               toastImage.cancel();
+              imageView.setAnimation(null);
+
             }
           };
 
@@ -388,7 +401,7 @@ public class Toast extends CordovaPlugin {
   }
 
 
-    private void showWithImage( /*String message,*/ String url, String Toastposition, int duration, int screenWidth, int blinking, String from, int percentage, CallbackContext callbackContext) {
+    private void showWithImage( /*String message,*/ String url, String Toastposition, int duration, int screenWidth, int blinking, String from, int percentage, String animation, CallbackContext callbackContext) {
 
       try{
 
@@ -417,6 +430,12 @@ public class Toast extends CordovaPlugin {
 
           }
 
+          //rotate animation
+
+            RotateAnimation animRotate = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            animRotate.setInterpolator(new LinearInterpolator());
+            animRotate.setRepeatCount(Animation.INFINITE);
+            animRotate.setDuration(duration);
 
 
             Context contextToast = IS_AT_LEAST_LOLLIPOP ? cordova.getActivity().getWindow().getContext() : cordova.getActivity().getApplicationContext();
@@ -471,9 +490,13 @@ public class Toast extends CordovaPlugin {
 
                           // trigger show every 3000 ms for as long as the requested duration
           _timer = new CountDownTimer(duration, blinking) {
+
+            if(animation.equals("rotate")){imageView.startAnimation(animRotate);}
+
             public void onTick(long millisUntilFinished) {toastImage.show();}
             public void onFinish() {
               toastImage.cancel();
+              imageView.setAnimation(null);
             }
           };
 
