@@ -56,6 +56,8 @@ public class Toast extends CordovaPlugin {
 
   public ObjectAnimator linearX = null;
 
+  public ObjectAnimator linearY = null;
+
   private static final String ACTION_SHOW_EVENT = "show";
   private static final String ACTION_HIDE_EVENT = "hide";
   private static final String ACTION_SHOW_IMAGE_EVENT = "showWithImage";
@@ -86,17 +88,17 @@ public class Toast extends CordovaPlugin {
     if (ACTION_SHOW_IMAGE_EVENT.equals(action)) { //Image option
 
 
-      if(args.getString(5).equals("resource")){
+      if(args.getString(6).equals("resource")){
 
 
-      showWithImage(args.getString(0), args.getString(1), args.getInt(2), args.getInt(3), args.getInt(4), args.getString(5), args.getInt(6), args.getString(7), callbackContext); // callback or value
+      showWithImage(args.getString(0), args.getString(1), args.getInt(2), args.getInt(3), args.getInt(4), args.getInt(5), args.getString(6), args.getInt(7), args.getString(8), callbackContext); // callback or value
 
       }
 
       else{ //from url
 
 
-      showWithImageFromUrl(args.getString(0), args.getString(1), args.getInt(2), args.getInt(3), args.getInt(4), args.getString(5), args.getInt(6), args.getString(7), callbackContext); // callback or value
+      showWithImageFromUrl(args.getString(0), args.getString(1), args.getInt(2), args.getInt(3), args.getInt(4), args.getInt(5), args.getString(6), args.getInt(7), args.getString(8), callbackContext); // callback or value
 
 
       }
@@ -292,7 +294,7 @@ public class Toast extends CordovaPlugin {
 
 
 
-      private void showWithImageFromUrl( /*String message,*/ String url, String Toastposition, int duration, int screenWidth, int blinking, String from, int percentage, String animation, CallbackContext callbackContext) {
+      private void showWithImageFromUrl( /*String message,*/ String url, String Toastposition, int duration, int screenWidth, int screenHeight, int blinking, String from, int percentage, String animation, CallbackContext callbackContext) {
 
       try{
 
@@ -412,16 +414,24 @@ public class Toast extends CordovaPlugin {
 
                   case "linearx":
 
-                linearX = ObjectAnimator.ofFloat(imageView, "translationX", 0, screenWidth/2, 0);
+                linearX = ObjectAnimator.ofFloat(imageView, "translationX", 0, screenWidth, 0);
                 linearX.setInterpolator(new EasingInterpolator(Ease.LINEAR));
                 linearX.setStartDelay(0);
                 linearX.setDuration(duration/4);
                 linearX.start();
+
+                case "lineary":
+
+                linearY = ObjectAnimator.ofFloat(imageView, "translationY", 0, screenHeight, 0);
+                linearY.setInterpolator(new EasingInterpolator(Ease.LINEAR));
+                linearY.setStartDelay(0);
+                linearY.setDuration(duration/4);
+                linearY.start();
                   break;
 
                   default:
 
-                  imageView.startAnimation(animRotate);
+                  imageView.startAnimation(animFade);
                   break;
 
 
@@ -448,7 +458,7 @@ public class Toast extends CordovaPlugin {
   }
 
 
-    private void showWithImage( /*String message,*/ String url, String Toastposition, int duration, int screenWidth, int blinking, String from, int percentage, String animation, CallbackContext callbackContext) {
+    private void showWithImage( /*String message,*/ String url, String Toastposition, int duration, int screenWidth, int screenHeight, int blinking, String from, int percentage, String animation, CallbackContext callbackContext) {
 
       try{
 
@@ -577,16 +587,25 @@ public class Toast extends CordovaPlugin {
 
 
                   case "linearx":
-                linearX = ObjectAnimator.ofFloat(imageView, "translationX", 0, screenWidth/2, 0); //first position, end, back to start
+                linearX = ObjectAnimator.ofFloat(imageView, "translationX", 0, screenWidth, 0); //first position, end, back to start
                 linearX.setInterpolator(new EasingInterpolator(Ease.LINEAR));
                 linearX.setStartDelay(0);
                 linearX.setDuration(duration/4);
                   linearX.start();
                   break;
 
+                case "lineary":
+
+                linearY = ObjectAnimator.ofFloat(imageView, "translationY", 0, screenHeight, 0);
+                linearY.setInterpolator(new EasingInterpolator(Ease.LINEAR));
+                linearY.setStartDelay(0);
+                linearY.setDuration(duration/4);
+                linearY.start();
+                  break;
+
                   default:
 
-                  imageView.startAnimation(animRotate);
+                  imageView.startAnimation(animFade);
                   break;
 
                 }
