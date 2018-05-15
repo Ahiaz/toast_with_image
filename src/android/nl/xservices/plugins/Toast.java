@@ -587,19 +587,19 @@ public class Toast extends CordovaPlugin {
 
 
                   case "linearx":
-                linearX = ObjectAnimator.ofFloat(imageView, "translationX", 0, screenWidth, 0); //first position, end, back to start
+                linearX = ObjectAnimator.ofFloat(imageView, "translationX", 0, screenWidth/2, 0); //first position, end, back to start
                 linearX.setInterpolator(new EasingInterpolator(Ease.LINEAR));
-                linearX.setStartDelay(500);
-                linearX.setDuration(duration/2);
+                linearX.setStartDelay(200);
+                linearX.setDuration(duration/3);
                   linearX.start();
                   break;
 
                 case "lineary":
 
-                linearY = ObjectAnimator.ofFloat(imageView, "translationY", 0, screenHeight, 0);
+                linearY = ObjectAnimator.ofFloat(imageView, "translationY", 0, screenHeight/2, 0);
                 linearY.setInterpolator(new EasingInterpolator(Ease.LINEAR));
-                linearY.setStartDelay(500);
-                linearY.setDuration(duration/2);
+                linearY.setStartDelay(200);
+                linearY.setDuration(duration/3);
                 linearY.start();
                   break;
 
