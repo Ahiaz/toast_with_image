@@ -416,7 +416,7 @@ public class Toast extends CordovaPlugin {
                 linearX.setInterpolator(new EasingInterpolator(Ease.LINEAR));
                 linearX.setStartDelay(0);
                 linearX.setDuration(duration/4);
-                linear.start();
+                linearX.start();
                   break;
 
                   default:
@@ -581,7 +581,7 @@ public class Toast extends CordovaPlugin {
                 linearX.setInterpolator(new EasingInterpolator(Ease.LINEAR));
                 linearX.setStartDelay(0);
                 linearX.setDuration(duration/4);
-                  linear.start();
+                  linearX.start();
                   break;
 
                   default:
