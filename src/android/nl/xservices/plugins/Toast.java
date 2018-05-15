@@ -48,6 +48,11 @@ import android.view.animation.LinearInterpolator;
 
 public class Toast extends CordovaPlugin {
 
+
+  public RotateAnimation animRotate = null;
+
+  public AlphaAnimation animFade = null;
+
   private static final String ACTION_SHOW_EVENT = "show";
   private static final String ACTION_HIDE_EVENT = "hide";
   private static final String ACTION_SHOW_IMAGE_EVENT = "showWithImage";
@@ -314,17 +319,17 @@ public class Toast extends CordovaPlugin {
 
           //rotate animation
 
-            RotateAnimation animRotate = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            animRotate = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
             animRotate.setInterpolator(new LinearInterpolator());
             animRotate.setRepeatCount(Animation.INFINITE);
             animRotate.setDuration(duration);
 
           //Fade animation
           
-          AlphaAnimation animFade = new AlphaAnimation(0.0f, 1.0f);
+          animFade = new AlphaAnimation(0.0f, 1.0f);
           animFade.setRepeatCount(Animation.INFINITE);
           animFade.setRepeatMode(Animation.REVERSE);
-          animFade.setDuration(duration/2);  
+          animFade.setDuration(duration/4);  
 
 
             Context contextToast = IS_AT_LEAST_LOLLIPOP ? cordova.getActivity().getWindow().getContext() : cordova.getActivity().getApplicationContext();
@@ -378,6 +383,19 @@ public class Toast extends CordovaPlugin {
 
             public void onTick(long millisUntilFinished) {toastImage.show(); 
 
+
+
+            }
+            public void onFinish() {
+              toastImage.cancel();
+              imageView.setAnimation(null);
+
+            }
+          };
+
+
+                toastImage.show();
+
                   switch(animation){
 
                   case "rotate":
@@ -395,17 +413,6 @@ public class Toast extends CordovaPlugin {
 
 
                 }
-
-            }
-            public void onFinish() {
-              toastImage.cancel();
-              imageView.setAnimation(null);
-
-            }
-          };
-
-
-                toastImage.show();
 
                 _timer.start();
 
@@ -459,18 +466,18 @@ public class Toast extends CordovaPlugin {
 
           //rotate animation
 
-            RotateAnimation animRotate = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            animRotate = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
             animRotate.setInterpolator(new LinearInterpolator());
             animRotate.setRepeatCount(Animation.INFINITE);
-            animRotate.setDuration(duration);
+            animRotate.setDuration(Animation.INFINITE);
 
 
            //Fade animation
           
-          AlphaAnimation animFade = new AlphaAnimation(0.0f, 1.0f);
+          animFade = new AlphaAnimation(0.0f, 1.0f);
           animFade.setRepeatCount(Animation.INFINITE);
           animFade.setRepeatMode(Animation.REVERSE);
-          animFade.setDuration(duration/2); 
+          animFade.setDuration(duration/4); 
 
 
             Context contextToast = IS_AT_LEAST_LOLLIPOP ? cordova.getActivity().getWindow().getContext() : cordova.getActivity().getApplicationContext();
@@ -531,7 +538,20 @@ public class Toast extends CordovaPlugin {
 
               toastImage.show(); 
 
-                switch(animation){
+
+
+            }
+            public void onFinish() {
+              toastImage.cancel();
+              imageView.setAnimation(null);
+            }
+          };
+
+
+                toastImage.show();
+
+
+                  switch(animation){
 
                   case "rotate":
                   imageView.startAnimation(animRotate);
@@ -547,17 +567,6 @@ public class Toast extends CordovaPlugin {
                   break;
 
                 }
-
-
-            }
-            public void onFinish() {
-              toastImage.cancel();
-              imageView.setAnimation(null);
-            }
-          };
-
-
-                toastImage.show();
 
                 _timer.start();
 
