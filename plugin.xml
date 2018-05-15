@@ -67,6 +67,7 @@
     <resource-file src="src/android/nl/xservices/plugins/res/layout/toast.xml" target="res/layout/toast.xml" />
     <resource-file src="src/android/nl/xservices/plugins/res/layout/roundborder.xml" target="res/layout/roundborder.xml" />
     <framework src="com.squareup.picasso:picasso:2.71828" /> <!--add gradle picasso for show images from url-->
+    <framework src="com.daasuu:EasingInterpolator:1.0.0" /> <!--add gradle EasingInterpolator for show animations-->
   </platform>
 
   <!-- wp8 -->

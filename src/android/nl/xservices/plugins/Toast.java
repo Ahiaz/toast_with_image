@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.RotateAnimation;
 import android.view.animation.AlphaAnimation;
+import android.animation.ObjectAnimator;
 import android.view.animation.Animation;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -43,8 +44,8 @@ import android.view.Display;
 import android.os.AsyncTask;
 import com.squareup.picasso.Picasso;
 import android.view.animation.LinearInterpolator;
-
-
+import com.daasuu.ei.Ease;
+import com.daasuu.ei.EasingInterpolator;
 
 public class Toast extends CordovaPlugin {
 
@@ -52,6 +53,8 @@ public class Toast extends CordovaPlugin {
   public RotateAnimation animRotate = null;
 
   public AlphaAnimation animFade = null;
+
+  public ObjectAnimator linearX = null;
 
   private static final String ACTION_SHOW_EVENT = "show";
   private static final String ACTION_HIDE_EVENT = "hide";
@@ -332,6 +335,7 @@ public class Toast extends CordovaPlugin {
           animFade.setDuration(duration/4);  
 
 
+
             Context contextToast = IS_AT_LEAST_LOLLIPOP ? cordova.getActivity().getWindow().getContext() : cordova.getActivity().getApplicationContext();
 
             // Retrieve the resource
@@ -406,6 +410,15 @@ public class Toast extends CordovaPlugin {
                   imageView.startAnimation(animFade);
                   break;
 
+                  case "linearx":
+
+                linearX = ObjectAnimator.ofFloat(imageView, "translationX", 0, screenWidth/2, 0);
+                linearX.setInterpolator(new EasingInterpolator(Ease.LINEAR));
+                linearX.setStartDelay(0);
+                linearX.setDuration(duration/4);
+                linear.start();
+                  break;
+
                   default:
 
                   imageView.startAnimation(animRotate);
@@ -477,7 +490,8 @@ public class Toast extends CordovaPlugin {
           animFade = new AlphaAnimation(0.0f, 1.0f);
           animFade.setRepeatCount(Animation.INFINITE);
           animFade.setRepeatMode(Animation.REVERSE);
-          animFade.setDuration(duration/4); 
+          animFade.setDuration(1000); 
+
 
 
             Context contextToast = IS_AT_LEAST_LOLLIPOP ? cordova.getActivity().getWindow().getContext() : cordova.getActivity().getApplicationContext();
@@ -559,6 +573,15 @@ public class Toast extends CordovaPlugin {
 
                   case "fade":
                   imageView.startAnimation(animFade);
+                  break;
+
+
+                  case "linearx":
+                linearX = ObjectAnimator.ofFloat(imageView, "translationX", 0, screenWidth/2, 0); //first position, end, back to start
+                linearX.setInterpolator(new EasingInterpolator(Ease.LINEAR));
+                linearX.setStartDelay(0);
+                linearX.setDuration(duration/4);
+                  linear.start();
                   break;
 
                   default:
