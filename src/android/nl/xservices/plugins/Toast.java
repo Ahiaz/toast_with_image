@@ -327,7 +327,6 @@ public class Toast extends CordovaPlugin {
             animRotate = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
             animRotate.setInterpolator(new LinearInterpolator());
             animRotate.setRepeatCount(Animation.INFINITE);
-            animRotate.setDuration(1000);
 
           //Fade animation
           
@@ -389,6 +388,7 @@ public class Toast extends CordovaPlugin {
 
             public void onTick(long millisUntilFinished) {toastImage.show(); 
                   
+                    animRotate.setDuration(blinking);
 
                   imageView.startAnimation(animRotate);
 
@@ -405,40 +405,6 @@ public class Toast extends CordovaPlugin {
 
                 toastImage.show();
 
-                  switch(animation){
-
-                  case "rotate":
-                  imageView.startAnimation(animRotate);
-                  break;
-
-                  case "fade":
-                  imageView.startAnimation(animFade);
-                  break;
-
-                  case "linearx":
-
-                linearX = ObjectAnimator.ofFloat(imageView, "translationX", 0, screenWidth, 0);
-                linearX.setInterpolator(new EasingInterpolator(Ease.LINEAR));
-                linearX.setStartDelay(0);
-                linearX.setDuration(duration/4);
-                linearX.start();
-
-                case "lineary":
-
-                linearY = ObjectAnimator.ofFloat(imageView, "translationY", 0, screenHeight, 0);
-                linearY.setInterpolator(new EasingInterpolator(Ease.LINEAR));
-                linearY.setStartDelay(0);
-                linearY.setDuration(duration/4);
-                linearY.start();
-                  break;
-
-                  default:
-
-                  imageView.startAnimation(animFade);
-                  break;
-
-
-                }
 
                 _timer.start();
 
