@@ -29,7 +29,7 @@ window.plugins.toast.showWithImage("https://cdn.appstorm.net/mac.appstorm.net/fi
 * **BLINKING EFFECT DURATION**: experimental property, you can adjust and test the values in your aplication.
 * **FROM**: Url or resource(the resource is a default loading image that is "loading").
 * **PERCENTAGE**: % of screen that image will occupy to make it responsive to all devices.
-* **ANIMATION**: fade or rotate animation for the image.
+* **ANIMATION**: fade, rotate, lineary, linearx, animation for the image.
 
 if you need support: jahiaz@gmail.com
 
