@@ -562,8 +562,10 @@ public class Toast extends CordovaPlugin {
 
               toastImage.show(); 
 
+               toastImage.cancel();
 
 
+             imageView.startAnimation(animRotate);
 
 
             }
