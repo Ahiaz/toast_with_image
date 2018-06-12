@@ -386,9 +386,14 @@ public class Toast extends CordovaPlugin {
                           // trigger show every 3000 ms for as long as the requested duration
           _timer = new CountDownTimer(duration, blinking) {
 
-            public void onTick(long millisUntilFinished) {toastImage.show(); 
+            public void onTick(long millisUntilFinished) {imageView.setAnimation(null);
+                    
+                   toastImage.cancel();
+
+
+                    toastImage.show(); 
                   
-                    animRotate.setDuration(blinking);
+                    animRotate.setDuration(5000);
 
                   imageView.startAnimation(animRotate);
 
