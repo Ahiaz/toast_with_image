@@ -562,20 +562,7 @@ public class Toast extends CordovaPlugin {
 
               toastImage.show(); 
 
-
-
-            }
-            public void onFinish() {
-              toastImage.cancel();
-              imageView.setAnimation(null);
-            }
-          };
-
-
-                toastImage.show();
-
-
-                  switch(animation){
+                                switch(animation){
 
                   case "rotate":
                   imageView.startAnimation(animRotate);
@@ -609,6 +596,19 @@ public class Toast extends CordovaPlugin {
                   break;
 
                 }
+
+
+
+            }
+            public void onFinish() {
+              toastImage.cancel();
+              imageView.setAnimation(null);
+            }
+          };
+
+
+                toastImage.show();
+
 
                 _timer.start();
 
