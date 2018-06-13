@@ -61,6 +61,9 @@ public class Toast extends CordovaPlugin {
 
   public Animation animTranslateDown = null;
 
+ public Animation animTranslateLeft = null;
+
+
   private static final String ACTION_SHOW_EVENT = "show";
   private static final String ACTION_HIDE_EVENT = "hide";
   private static final String ACTION_SHOW_IMAGE_EVENT = "showWithImage";
@@ -345,9 +348,14 @@ public class Toast extends CordovaPlugin {
           animTranslateDown= new TranslateAnimation(TranslateAnimation.ABSOLUTE, 0f,TranslateAnimation.ABSOLUTE, 0f, TranslateAnimation.RELATIVE_TO_PARENT, 0f,TranslateAnimation.RELATIVE_TO_PARENT, 1.0f);  // from x start to end x, from y start to y end
           animTranslateDown.setDuration(duration);
           animTranslateDown.setRepeatCount(Animation.INFINITE);
-          animTranslateDown.setRepeatMode(Animation.REVERSE);
-          animTranslateDown.setInterpolator(new LinearInterpolator()); 
+          animTranslateDown.setInterpolator(new LinearInterpolator());
 
+          //Translate Left animation
+
+          animTranslateLeft = new TranslateAnimation(TranslateAnimation.ABSOLUTE, 0f,TranslateAnimation.ABSOLUTE, 1.0f, TranslateAnimation.RELATIVE_TO_PARENT, 0f,TranslateAnimation.RELATIVE_TO_PARENT, 0f);  // from x start to end x, from y start to y end
+          animTranslateLeft.setDuration(duration);
+          animTranslateLeft.setRepeatCount(Animation.INFINITE);
+          animTranslateLeft.setInterpolator(new LinearInterpolator());
 
             Context contextToast = IS_AT_LEAST_LOLLIPOP ? cordova.getActivity().getWindow().getContext() : cordova.getActivity().getApplicationContext();
 
@@ -416,7 +424,13 @@ public class Toast extends CordovaPlugin {
           };
 
 
-                  switch(animation){
+                toastImage.show();
+
+
+                _timer.start();
+
+
+                   switch(animation){
 
                   case "rotate":
                   imageView.startAnimation(animRotate);
@@ -429,7 +443,8 @@ public class Toast extends CordovaPlugin {
 
                   case "linearx":
 
-                  //aca la del x
+                  imageView.startAnimation(animTranslateLeft);
+
 
                   break;
 
@@ -445,12 +460,6 @@ public class Toast extends CordovaPlugin {
                   break;
 
                 }
-
-
-                toastImage.show();
-
-
-                _timer.start();
 
 
                 mostRecentToast = toastImage;
@@ -516,8 +525,20 @@ public class Toast extends CordovaPlugin {
           animFade.setRepeatMode(Animation.REVERSE);
           animFade.setDuration(2000);
 
+          
+                    //Translate Down animation
 
-          //translate animation 
+          animTranslateDown= new TranslateAnimation(TranslateAnimation.ABSOLUTE, 0f,TranslateAnimation.ABSOLUTE, 0f, TranslateAnimation.RELATIVE_TO_PARENT, 0f,TranslateAnimation.RELATIVE_TO_PARENT, 1.0f);  // from x start to end x, from y start to y end
+          animTranslateDown.setDuration(duration);
+          animTranslateDown.setRepeatCount(Animation.INFINITE);
+          animTranslateDown.setInterpolator(new LinearInterpolator());
+
+          //Translate Left animation
+
+          animTranslateLeft = new TranslateAnimation(TranslateAnimation.ABSOLUTE, 0f,TranslateAnimation.ABSOLUTE, 1.0f, TranslateAnimation.RELATIVE_TO_PARENT, 0f,TranslateAnimation.RELATIVE_TO_PARENT, 0f);  // from x start to end x, from y start to y end
+          animTranslateLeft.setDuration(duration);
+          animTranslateLeft.setRepeatCount(Animation.INFINITE);
+          animTranslateLeft.setInterpolator(new LinearInterpolator()); 
 
 
 
@@ -572,7 +593,7 @@ public class Toast extends CordovaPlugin {
 
 
                           // trigger show every 3000 ms for as long as the requested duration
-          _timer = new CountDownTimer(duration, blinking) {
+          _timer = new CountDownTimer(duration, 1000) {
 
             public void onTick(long millisUntilFinished) {
 
@@ -589,7 +610,12 @@ public class Toast extends CordovaPlugin {
           };
 
 
-                                switch(animation){
+                toastImage.show();
+
+                _timer.start();
+
+
+                switch(animation){
 
                   case "rotate":
                   imageView.startAnimation(animRotate);
@@ -601,20 +627,16 @@ public class Toast extends CordovaPlugin {
 
 
                   case "linearx":
-                linearX = ObjectAnimator.ofFloat(imageView, "translationX", 0, screenWidth/2, 0); //first position, end, back to start
-                linearX.setInterpolator(new EasingInterpolator(Ease.LINEAR));
-                linearX.setStartDelay(200);
-                linearX.setDuration(duration/3);
-                  linearX.start();
+
+                  imageView.startAnimation(animTranslateLeft);
+
+
                   break;
 
                 case "lineary":
 
-                linearY = ObjectAnimator.ofFloat(imageView, "translationY", 0, screenHeight/2, 0);
-                linearY.setInterpolator(new EasingInterpolator(Ease.LINEAR));
-                linearY.setStartDelay(200);
-                linearY.setDuration(duration/3);
-                linearY.start();
+                  imageView.startAnimation(animTranslateDown);
+
                   break;
 
                   default:
@@ -623,10 +645,6 @@ public class Toast extends CordovaPlugin {
                   break;
 
                 }
-
-                toastImage.show();
-
-                _timer.start();
 
                 mostRecentToast = toastImage;
 
