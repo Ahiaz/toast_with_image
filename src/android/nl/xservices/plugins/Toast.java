@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.RotateAnimation;
 import android.view.animation.AlphaAnimation;
+import android.view.animation.TranslateAnimation;
 import android.animation.ObjectAnimator;
 import android.view.animation.Animation;
 import android.view.ViewGroup;
@@ -57,6 +58,8 @@ public class Toast extends CordovaPlugin {
   public ObjectAnimator linearX = null;
 
   public ObjectAnimator linearY = null;
+
+  public Animation animTranslateDown = null;
 
   private static final String ACTION_SHOW_EVENT = "show";
   private static final String ACTION_HIDE_EVENT = "hide";
@@ -322,20 +325,30 @@ public class Toast extends CordovaPlugin {
 
           }
 
+          ImageView imageView = (ImageView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("imageView", "id", cordova.getActivity().getPackageName()));
+
           //rotate animation
 
             animRotate = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
             animRotate.setInterpolator(new LinearInterpolator());
             animRotate.setRepeatCount(Animation.INFINITE);
-            animRotate.setDuration(duration);
+            animRotate.setDuration(3000);
 
           //Fade animation
           
           animFade = new AlphaAnimation(0.0f, 1.0f);
           animFade.setRepeatCount(Animation.INFINITE);
           animFade.setRepeatMode(Animation.REVERSE);
-          animFade.setDuration(duration/4);  
+          animFade.setDuration(2000);  
 
+
+          //Translate Down animation
+
+          animTranslateDown= new TranslateAnimation(TranslateAnimation.ABSOLUTE, 0f,TranslateAnimation.ABSOLUTE, 0f, TranslateAnimation.RELATIVE_TO_PARENT, 0f,TranslateAnimation.RELATIVE_TO_PARENT, 1.0f);  // from x start to end x, from y start to y end
+          animTranslateDown.setDuration(3000);
+          animTranslateDown.setRepeatCount(Animation.INFINITE);
+          animTranslateDown.setRepeatMode(Animation.REVERSE);
+          animTranslateDown.setInterpolator(new LinearInterpolator()); 
 
 
             Context contextToast = IS_AT_LEAST_LOLLIPOP ? cordova.getActivity().getWindow().getContext() : cordova.getActivity().getApplicationContext();
@@ -350,7 +363,6 @@ public class Toast extends CordovaPlugin {
 
             View toastView = inflater.inflate(custom_layout, mylayout);
 
-                ImageView imageView = (ImageView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("imageView", "id", cordova.getActivity().getPackageName()));
 
 
 
@@ -387,12 +399,11 @@ public class Toast extends CordovaPlugin {
                           // trigger show every 3000 ms for as long as the requested duration
           _timer = new CountDownTimer(duration, 1000) {
 
-            public void onTick(long millisUntilFinished) {//imageView.setAnimation(null);
+            public void onTick(long millisUntilFinished) {
                     
 
                     toastImage.show(); 
                   
-                    //animRotate.setDuration(5000);
 
 
 
@@ -404,6 +415,37 @@ public class Toast extends CordovaPlugin {
 
             }
           };
+
+
+                  switch(animation){
+
+                  case "rotate":
+                  imageView.startAnimation(animRotate);
+                  break;
+
+                  case "fade":
+                  imageView.startAnimation(animFade);
+                  break;
+
+
+                  case "linearx":
+
+                  //aca la del x
+
+                  break;
+
+                case "lineary":
+
+                  imageView.startAnimation(animTranslateDown);
+
+                  break;
+
+                  default:
+
+                  imageView.startAnimation(animFade);
+                  break;
+
+                }
 
 
                 toastImage.show();
@@ -467,7 +509,7 @@ public class Toast extends CordovaPlugin {
             animRotate = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
             animRotate.setInterpolator(new LinearInterpolator());
             animRotate.setRepeatCount(Animation.INFINITE);
-            animRotate.setDuration(20000);
+            animRotate.setDuration(3000);
 
 
            //Fade animation
@@ -475,7 +517,10 @@ public class Toast extends CordovaPlugin {
           animFade = new AlphaAnimation(0.0f, 1.0f);
           animFade.setRepeatCount(Animation.INFINITE);
           animFade.setRepeatMode(Animation.REVERSE);
-          animFade.setDuration(duration/4); 
+          animFade.setDuration(2000);
+
+
+          //translate animation 
 
 
 
@@ -537,10 +582,6 @@ public class Toast extends CordovaPlugin {
 
               toastImage.show(); 
 
-               toastImage.cancel();
-
-
-             imageView.startAnimation(animRotate);
 
 
             }
@@ -550,8 +591,6 @@ public class Toast extends CordovaPlugin {
             }
           };
 
-
-                toastImage.show();
 
                                 switch(animation){
 
@@ -587,6 +626,8 @@ public class Toast extends CordovaPlugin {
                   break;
 
                 }
+
+                toastImage.show();
 
                 _timer.start();
 
