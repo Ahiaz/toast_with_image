@@ -343,7 +343,7 @@ public class Toast extends CordovaPlugin {
           //Translate Down animation
 
           animTranslateDown= new TranslateAnimation(TranslateAnimation.ABSOLUTE, 0f,TranslateAnimation.ABSOLUTE, 0f, TranslateAnimation.RELATIVE_TO_PARENT, 0f,TranslateAnimation.RELATIVE_TO_PARENT, 1.0f);  // from x start to end x, from y start to y end
-          animTranslateDown.setDuration(3000);
+          animTranslateDown.setDuration(duration);
           animTranslateDown.setRepeatCount(Animation.INFINITE);
           animTranslateDown.setRepeatMode(Animation.REVERSE);
           animTranslateDown.setInterpolator(new LinearInterpolator()); 
