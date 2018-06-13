@@ -352,8 +352,6 @@ public class Toast extends CordovaPlugin {
 
           //Translate Up animation
 
-TranslateAnimation(float fromXDelta, float toXDelta, float fromYDelta, float toYDelta)
-
 
           animTranslateUp = new TranslateAnimation(TranslateAnimation.ABSOLUTE, 0f,TranslateAnimation.ABSOLUTE, 0f, TranslateAnimation.RELATIVE_TO_PARENT, 0f,TranslateAnimation.RELATIVE_TO_PARENT, -1.0f);  // from x start to end x, from y start to y end
           animTranslateUp.setDuration(duration);
