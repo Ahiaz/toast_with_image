@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.animation.RotateAnimation;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.TranslateAnimation;
+import android.view.animation.ScaleAnimation;
 import android.animation.ObjectAnimator;
 import android.view.animation.Animation;
 import android.view.ViewGroup;
@@ -62,6 +63,8 @@ public class Toast extends CordovaPlugin {
   public Animation animTranslateDown = null;
 
  public Animation animTranslateUp = null;
+
+ public ScaleAnimation animZoom = null;
 
 
   private static final String ACTION_SHOW_EVENT = "show";
@@ -358,6 +361,18 @@ public class Toast extends CordovaPlugin {
           animTranslateUp.setRepeatCount(Animation.INFINITE);
           animTranslateUp.setInterpolator(new LinearInterpolator());
 
+
+          //Zoom animation
+
+          animZoom = new ScaleAnimation(0, 1f, 0, 1f, Animation.RELATIVE_TO_SELF, (float)0.5,Animation.RELATIVE_TO_SELF, (float)0.5);
+          animZoom.setDuration(2000);
+          animZoom.setRepeatCount(Animation.INFINITE);
+
+
+
+
+
+
             Context contextToast = IS_AT_LEAST_LOLLIPOP ? cordova.getActivity().getWindow().getContext() : cordova.getActivity().getApplicationContext();
 
             // Retrieve the resource
@@ -455,6 +470,13 @@ public class Toast extends CordovaPlugin {
 
                   break;
 
+
+                case "zoom":  
+
+                  imageView.startAnimation(animZoom);
+
+                  break;
+
                   default:
 
                   imageView.startAnimation(animFade);
@@ -540,6 +562,13 @@ public class Toast extends CordovaPlugin {
           animTranslateUp.setDuration(duration);
           animTranslateUp.setRepeatCount(Animation.INFINITE);
           animTranslateUp.setInterpolator(new LinearInterpolator()); 
+
+
+          //Zoom animation
+
+          animZoom = new ScaleAnimation(0, 1f, 0, 1f, Animation.RELATIVE_TO_SELF, (float)0.5,Animation.RELATIVE_TO_SELF, (float)0.5);
+          animZoom.setDuration(2000);
+          animZoom.setRepeatCount(Animation.INFINITE);
 
 
 
@@ -639,6 +668,12 @@ public class Toast extends CordovaPlugin {
                   imageView.startAnimation(animTranslateDown);
 
                   break;
+
+                case "zoom":
+                
+                imageView.startAnimation(animZoom);
+
+                break;  
 
                   default:
 
