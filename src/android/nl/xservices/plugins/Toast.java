@@ -325,8 +325,6 @@ public class Toast extends CordovaPlugin {
 
           }
 
-          ImageView imageView = (ImageView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("imageView", "id", cordova.getActivity().getPackageName()));
-
           //rotate animation
 
             animRotate = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
@@ -363,6 +361,7 @@ public class Toast extends CordovaPlugin {
 
             View toastView = inflater.inflate(custom_layout, mylayout);
 
+                ImageView imageView = (ImageView)toastView.findViewById(cordova.getActivity().getResources().getIdentifier("imageView", "id", cordova.getActivity().getPackageName()));
 
 
 
