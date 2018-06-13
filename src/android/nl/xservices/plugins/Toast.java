@@ -453,8 +453,6 @@ public class Toast extends CordovaPlugin {
 
                 _timer.start();
 
-                imageView.startAnimation(animRotate);
-
 
                 mostRecentToast = toastImage;
 
