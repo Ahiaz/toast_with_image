@@ -61,7 +61,7 @@ public class Toast extends CordovaPlugin {
 
   public Animation animTranslateDown = null;
 
- public Animation animTranslateLeft = null;
+ public Animation animTranslateUp = null;
 
 
   private static final String ACTION_SHOW_EVENT = "show";
@@ -350,12 +350,15 @@ public class Toast extends CordovaPlugin {
           animTranslateDown.setRepeatCount(Animation.INFINITE);
           animTranslateDown.setInterpolator(new LinearInterpolator());
 
-          //Translate Left animation
+          //Translate Up animation
 
-          animTranslateLeft = new TranslateAnimation(50.0f, 400.0f, 0.0f, 0.0f);  // from x start to end x, from y start to y end
-          animTranslateLeft.setDuration(duration);
-          animTranslateLeft.setRepeatCount(Animation.INFINITE);
-          animTranslateLeft.setInterpolator(new LinearInterpolator());
+TranslateAnimation(float fromXDelta, float toXDelta, float fromYDelta, float toYDelta)
+
+
+          animTranslateUp = new TranslateAnimation(TranslateAnimation.ABSOLUTE, 0f,TranslateAnimation.ABSOLUTE, 0f, TranslateAnimation.RELATIVE_TO_PARENT, 0f,TranslateAnimation.RELATIVE_TO_PARENT, -1.0f);  // from x start to end x, from y start to y end
+          animTranslateUp.setDuration(duration);
+          animTranslateUp.setRepeatCount(Animation.INFINITE);
+          animTranslateUp.setInterpolator(new LinearInterpolator());
 
             Context contextToast = IS_AT_LEAST_LOLLIPOP ? cordova.getActivity().getWindow().getContext() : cordova.getActivity().getApplicationContext();
 
@@ -441,14 +444,14 @@ public class Toast extends CordovaPlugin {
                   break;
 
 
-                  case "linearx":
+                  case "linearup":
 
-                  imageView.startAnimation(animTranslateLeft);
+                  imageView.startAnimation(animTranslateUp);
 
 
                   break;
 
-                case "lineary":
+                case "lineardown":
 
                   imageView.startAnimation(animTranslateDown);
 
@@ -533,12 +536,12 @@ public class Toast extends CordovaPlugin {
           animTranslateDown.setRepeatCount(Animation.INFINITE);
           animTranslateDown.setInterpolator(new LinearInterpolator());
 
-          //Translate Left animation
+          //Translate Up animation
 
-          animTranslateLeft = new TranslateAnimation(50.0f, 400.0f, 0.0f, 0.0f);  // from x start to end x, from y start to y end
-          animTranslateLeft.setDuration(duration);
-          animTranslateLeft.setRepeatCount(Animation.INFINITE);
-          animTranslateLeft.setInterpolator(new LinearInterpolator()); 
+          animTranslateUp = new TranslateAnimation(TranslateAnimation.ABSOLUTE, 0f,TranslateAnimation.ABSOLUTE, 0f, TranslateAnimation.RELATIVE_TO_PARENT, 0f,TranslateAnimation.RELATIVE_TO_PARENT, -1.0f);  // from x start to end x, from y start to y end
+          animTranslateUp.setDuration(duration);
+          animTranslateUp.setRepeatCount(Animation.INFINITE);
+          animTranslateUp.setInterpolator(new LinearInterpolator()); 
 
 
 
@@ -626,14 +629,14 @@ public class Toast extends CordovaPlugin {
                   break;
 
 
-                  case "linearx":
+                  case "linearup":
 
-                  imageView.startAnimation(animTranslateLeft);
+                  imageView.startAnimation(animTranslateUp);
 
 
                   break;
 
-                case "lineary":
+                case "lineardown":
 
                   imageView.startAnimation(animTranslateDown);
 
