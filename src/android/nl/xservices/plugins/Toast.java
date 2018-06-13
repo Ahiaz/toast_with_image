@@ -327,6 +327,7 @@ public class Toast extends CordovaPlugin {
             animRotate = new RotateAnimation(0.0f, 360.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
             animRotate.setInterpolator(new LinearInterpolator());
             animRotate.setRepeatCount(Animation.INFINITE);
+            animRotate.setDuration(duration);
 
           //Fade animation
           
@@ -386,13 +387,13 @@ public class Toast extends CordovaPlugin {
                           // trigger show every 3000 ms for as long as the requested duration
           _timer = new CountDownTimer(duration, 1000) {
 
-            public void onTick(long millisUntilFinished) {imageView.setAnimation(null);
+            public void onTick(long millisUntilFinished) {//imageView.setAnimation(null);
+                    
 
                     toastImage.show(); 
                   
-                    animRotate.setDuration(5000);
+                    //animRotate.setDuration(5000);
 
-                  imageView.startAnimation(animRotate);
 
 
 
@@ -410,7 +411,17 @@ public class Toast extends CordovaPlugin {
 
                 _timer.start();
 
+                imageView.startAnimation(animRotate);
+
+
                 mostRecentToast = toastImage;
+
+
+          PluginResult pr = new PluginResult(PluginResult.Status.OK);
+          pr.setKeepCallback(true);
+          callbackContext.sendPluginResult(pr);
+               
+          callbackContext.success("complete");
 
         
  
