@@ -535,7 +535,7 @@ public class Toast extends CordovaPlugin {
 
           //Translate Left animation
 
-          animTranslateLeft = new TranslateAnimation(TranslateAnimation.ABSOLUTE, 0f,TranslateAnimation.ABSOLUTE, 1.0f, TranslateAnimation.RELATIVE_TO_PARENT, 0f,TranslateAnimation.RELATIVE_TO_PARENT, 0f);  // from x start to end x, from y start to y end
+          animTranslateLeft = new TranslateAnimation(50.0f, 400.0f, 0.0f, 0.0f);  // from x start to end x, from y start to y end
           animTranslateLeft.setDuration(duration);
           animTranslateLeft.setRepeatCount(Animation.INFINITE);
           animTranslateLeft.setInterpolator(new LinearInterpolator()); 
